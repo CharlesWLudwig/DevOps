@@ -1,5 +1,7 @@
 # Docker commands
 
+[![Docker Image CI](https://github.com/CharlesWLudwig/DevOps/actions/workflows/main.yml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/main.yml)
+
 ## build the image
 ```bash
 docker build -t node_app .
