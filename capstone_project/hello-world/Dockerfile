@@ -1,6 +1,5 @@
 FROM node:16.13.1-alpine AS build
-RUN apk --no-cache add ca-certificates
-RUN apt-get update && apt-get install -y npm
+RUN apk --no-cache add ca-certificates npm
 WORKDIR /tmp/build
 
 COPY capstone_project/hello-world/package*.json ./
