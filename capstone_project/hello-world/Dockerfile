@@ -7,7 +7,7 @@ COPY capstone_project/hello-world/package*.json ./
   
 COPY . ./app
 
-RUN npm i -g npm; npm i; npm run build
+RUN NODE_ENV=development npm i -g npm; npm i; npm run build
 
 FROM nginx AS final
 WORKDIR /usr/share/nginx/html
