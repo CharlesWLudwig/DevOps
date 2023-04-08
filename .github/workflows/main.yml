@@ -92,3 +92,7 @@ jobs:
       -
         name: Run docker images
         run: docker run --name hello-world -p 80:8080 -d ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello
+
+      -
+        name: Start docker
+        run: docker start
