@@ -79,7 +79,7 @@ jobs:
 
       - 
         name: Building container image from pull
-        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest hello-world:latest
 
       - 
         name: Pushing container image from pull
