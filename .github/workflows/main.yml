@@ -85,17 +85,6 @@ jobs:
         name: Pushing container image from pull
         run: docker push localhost:3000/hello-world
 
-      - 
-        name: Removing local container image
-        run: docker image remove ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
-
-      - 
-        name: Removing localhost container image
-        run: docker image remove localhost:3000/hello-world
-
-      - 
-        name: ensure a container is running
-        run: docker pull localhost:3000/hello-world
       -
         name: list docker images
         run: docker images
