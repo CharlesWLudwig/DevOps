@@ -81,4 +81,4 @@ jobs:
 
       -
         name: list docker images
-        run: docker --rm hello-world
+        run: docker ps
