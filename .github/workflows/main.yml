@@ -95,4 +95,4 @@ jobs:
 
       -
         name: Start docker
-        run: docker start
+        run: docker start ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
