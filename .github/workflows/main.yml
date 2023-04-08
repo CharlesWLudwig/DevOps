@@ -63,7 +63,7 @@ jobs:
           context: .
           file: ./capstone_project/hello-world/Dockerfile
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: latest
           labels: ${{ steps.meta.outputs.labels }}
 
       -
