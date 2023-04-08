@@ -74,6 +74,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - 
+        name: Pulling local container image
+        run: docker image pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
+      - 
         name: building container image from pull
         run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest localhost:3000/hello-world
 
