@@ -7,17 +7,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  docker:
+
+  build:
     runs-on: ubuntu-latest
     steps:
       -
         name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v1       
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
       - 
         uses: actions/checkout@v3
       - 
