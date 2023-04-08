@@ -11,7 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    
     steps:
       - 
         uses: actions/checkout@v3
@@ -72,3 +71,7 @@ jobs:
       - 
         name: building container image from pull
         run: docker run -d -t --name ansible_hello_world -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
+
+      -
+        name: list docker images
+        run: docker images
