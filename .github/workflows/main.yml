@@ -75,11 +75,11 @@ jobs:
 
       - 
         name: Pulling local container image
-        run: docker image pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest hello-world:latest
+        run: docker image pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
     
       -
         name: List docker images
-        run: docker images
+        run: docker ps
 
       -
         name: Run docker images
