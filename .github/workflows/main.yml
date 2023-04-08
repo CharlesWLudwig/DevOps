@@ -6,6 +6,13 @@ on:
       - "main"
 
 jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up Docker
+        uses: crazy-max/ghaction-setup-docker@v1       
+
   build:
     runs-on: ubuntu-latest
     steps:
