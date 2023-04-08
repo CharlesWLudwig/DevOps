@@ -83,12 +83,11 @@ jobs:
 
       - 
         name: Pushing container image from pull
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
-
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello
       -
         name: List docker images
         run: docker images
 
       -
         name: Run docker images
-        run: docker run --name hello-world -p 80:8080 -d ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello
+        run: docker run --name -i hello-world -p 80:8080 -d ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello
