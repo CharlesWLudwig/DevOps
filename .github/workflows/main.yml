@@ -58,7 +58,6 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
-
       - 
         name: ensure a container is running
-        run: docker pull ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest --publish "3000:3000" 
+        run: docker pull ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
