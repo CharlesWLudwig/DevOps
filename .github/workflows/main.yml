@@ -76,9 +76,10 @@ jobs:
         name: ensure a container is running
         run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
 
-      - 
-        name: building container image from pull
-        run: docker run --rm -t -dp 3000:80 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
       -
         name: list docker images
         run: docker images
+        
+      - 
+        name: building container image from pull
+        run: docker run --rm -t -dp 3000:80 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
