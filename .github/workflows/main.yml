@@ -1,9 +1,10 @@
-name: ci
+name: Docker Image CI
 
 on:
   push:
-    branches:
-      - "main"
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   docker:
@@ -15,7 +16,14 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+
     steps:
+      - 
+        uses: actions/checkout@v3
+      - 
+        name: Build the Docker image
+        run: docker build . --file capstone_project/hello-world/Dockerfile --tag hello-world:latest
+        
       -
         name: Checkout
         uses: actions/checkout@v3
