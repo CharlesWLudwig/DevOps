@@ -70,7 +70,7 @@ jobs:
 
       - 
         name: building container image from pull
-        run: docker run -d -t --name ansible_hello_world -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
+        run: docker run --rm -d -it --name ansible_hello_world -p 3000:80 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
 
       -
         name: list docker images
