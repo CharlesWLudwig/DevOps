@@ -78,18 +78,11 @@ jobs:
         run: docker image pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
       - 
-        name: Building container image from pull
-        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest hello-world:latest
-
-      - 
         name: Pushing container image from pull
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello
+        
       -
         name: List docker images
         run: docker images
-
-      -
-        name: Run docker images
-        run: docker run --name -i hello-world -p localhost:8080:80 -d --restart=always ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest http://localhost/hello /bin/bash
 
         
