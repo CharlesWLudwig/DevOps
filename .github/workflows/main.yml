@@ -23,8 +23,10 @@ jobs:
           cache-dependency-path: capstone_project/hello-world/package-lock.json
       - 
         run: npm install
+        working-directory: capstone_project/hello-world/src
       -  
         run: npm test
+        working-directory: capstone_project/hello-world/src
 
       -
         name: Set up Docker
