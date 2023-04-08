@@ -40,3 +40,14 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
+
+      - 
+        name: ensure a container is running
+         docker_container:
+          name: hello_world
+          state: started
+          image: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+          pull: true
+          ports:
+             - "3000:3000" 
