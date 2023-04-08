@@ -62,3 +62,7 @@ jobs:
       - 
         name: ensure a container is running
         run: docker pull ghcr.io/${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
+
+      - 
+        name: building container image from pull
+        run: docker run -d --name ansible_hello_world -p 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
