@@ -10,4 +10,6 @@ COPY . ./app
 FROM nginx AS final
 WORKDIR /usr/share/nginx/html
 COPY --from=build /tmp/build .
+ENV PORT = 3000
+EXPOSE 3000
 CMD ["./app"]  
