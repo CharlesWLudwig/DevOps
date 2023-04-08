@@ -9,5 +9,5 @@ COPY . ./app
 
 FROM nginx AS final
 WORKDIR /usr/share/nginx/html
-COPY --from=build /tmp/build/build .
+COPY --from=build /tmp/build .
 CMD ["./app"]  
