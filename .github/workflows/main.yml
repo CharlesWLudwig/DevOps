@@ -10,7 +10,22 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    
+    
     steps:
+      - 
+        uses: actions/checkout@v3
+      - 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          cache-dependency-path: capstone_project/hello-world/package-lock.json
+      - 
+        run: npm install
+      -  
+        run: npm test
+
       -
         name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v1       
