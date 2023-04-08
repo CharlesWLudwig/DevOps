@@ -72,14 +72,26 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - 
+        name: building container image from pull
+        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest localhost:3000/hello-world
+
+      - 
+        name: Pushing container image from pull
+        run: docker push localhost:3000/hello-world
+
+      - 
+        name: Removing local container image
+        run: docker image remove ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
+      - 
+        name: Removing localhost container image
+        run: docker image remove localhost:3000/hello-world
+
       - 
         name: ensure a container is running
-        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
-
+        run: docker pull localhost:3000/hello-world
       -
         name: list docker images
         run: docker images
-        
-      - 
-        name: building container image from pull
-        run: docker run --rm -t -dp 3000:80 ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest 
