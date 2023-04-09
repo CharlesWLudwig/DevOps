@@ -16,4 +16,5 @@ COPY . ./App
 
 EXPOSE 3000
 
-CMD ["node", "./App"]
+CMD ["node", "./App"] 
+CMD serve -w --host 0.0.0.0
