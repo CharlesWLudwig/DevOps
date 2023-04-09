@@ -6,9 +6,9 @@ RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
 WORKDIR /data/app
 
-COPY /data/app/capstone_project/hello-world/package.json ./App
+COPY capstone_project/hello-world/package.json ./App
 
-COPY /data/app/capstone_project/hello-world/package-lock.json ./App
+COPY capstone_project/hello-world/package-lock.json ./App
 
 WORKDIR /data/app/capstone_project/hello-world/src
 
