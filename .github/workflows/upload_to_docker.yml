@@ -39,6 +39,10 @@ jobs:
       - 
         name: Build the Docker image
         run: docker build . --file capstone_project/hello-world/Dockerfile --tag hello-world:latest
+ 
+      - 
+        name: Build the online Docker image
+        run: docker build -t hello-world:latest -f- https://github.com/itjuana-bootcamp/DevOps.git <<EOF
 
       -
         name: list docker images
