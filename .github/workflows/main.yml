@@ -33,7 +33,10 @@ jobs:
       - 
         name: Build the Docker image
         run: docker build . --file capstone_project/hello-world/Dockerfile --tag hello-world:latest
-       
+
+        run: npm start
+        working-directory: capstone_project/hello-world/src
+
       -
         name: list docker images
         run: docker images -a
