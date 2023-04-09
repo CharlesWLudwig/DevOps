@@ -1,8 +1,8 @@
 # DevOps Bootcamp Capstone Project
 
-[![Docker Image CI](https://github.com/CharlesWLudwig/DevOps/actions/workflows/upload_to_docker.yml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/upload_to_docker.yml)
+[![Docker Image CI](https://github.com/CharlesWLudwig/DevOps/actions/workflows/workflow_1_upload_to_docker.yml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/workflow_1_upload_to_docker.yml)
 
-[![Python package](https://github.com/CharlesWLudwig/DevOps/actions/workflows/ansible_run.yaml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/ansible_run.yaml)
+[![Python package](https://github.com/CharlesWLudwig/DevOps/actions/workflows/workflow_2_ansible_run.yaml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/workflow_2_ansible_run.yaml)
 
 - [DevOps Bootcamp Capstone Project](#devops-bootcamp-capstone-project)
   - [Description](#description)
