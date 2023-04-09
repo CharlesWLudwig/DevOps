@@ -33,6 +33,9 @@ jobs:
           ruff --format=github --target-version=py37 .
 
       - uses: actions/checkout@v3
+        with:
+          submodules: true
+          token: ${{secrets.REPO_TOKEN}}
       - name: Setup SSH 
         shell: bash
         run: |
