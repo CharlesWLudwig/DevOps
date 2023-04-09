@@ -80,4 +80,4 @@ jobs:
       # See successful image run by Docker
       -
         name: Run docker images
-        run: docker run --network="host" --publish=3000:3000 hello-world:latest
+        run: docker run --network host --publish=3000:3000 hello-world:latest
