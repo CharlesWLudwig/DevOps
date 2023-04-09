@@ -86,4 +86,4 @@ jobs:
       - name: Set up shell
         shell: bash
         run: |
-          Copy entrypoint.sh .github/actions/ansible
+          Copy ansible-challenge/ansible_base/startup.sh .github/actions/ansible
