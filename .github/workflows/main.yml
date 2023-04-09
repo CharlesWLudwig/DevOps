@@ -37,6 +37,10 @@ jobs:
         run: docker build . --file capstone_project/hello-world/Dockerfile --tag hello-world:latest
 
       -
+        name: Run docker images
+        run: docker run -t -p 3000:3000 --name hello-world hello-world:latest
+        
+      -
         name: list docker images
         run: docker ps
         
