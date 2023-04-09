@@ -72,6 +72,11 @@ jobs:
         name: List docker images
         run: docker images -a
 
+      # See current image created by Docker
+      -
+        name: Current docker images
+        run: docker ps
+
       # See successful image run by Docker
       -
         name: Run docker images
