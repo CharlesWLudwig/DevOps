@@ -14,6 +14,8 @@ jobs:
     
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
+      - 
+        uses: actions/checkout@v3
       # Set up Docker for GitHub Actions environment
       -
         name: Set up Docker
