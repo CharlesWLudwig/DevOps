@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: ./.github/actions/ansible
+    - uses: ansible-challenge/ansible_files
       with: 
         playbook: playbook.yml
         inventory: localhost
