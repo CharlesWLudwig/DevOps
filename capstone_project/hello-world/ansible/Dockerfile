@@ -1,4 +1,4 @@
-FROM  cludwig13/ansible-in-containers
+FROM  ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
 COPY ./entrypoint.sh /entrypoint.sh
 
