@@ -4,8 +4,6 @@ RUN apk --no-cache add ca-certificates npm
 
 COPY package*.json .
 
-WORKDIR capstone_project/hello-world/src
-
 COPY . .
 
 EXPOSE 3000
