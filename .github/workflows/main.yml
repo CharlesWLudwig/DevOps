@@ -1,16 +1,18 @@
+# YAML workflow name
 name: Docker Image CI
 
+# When YAML will load
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
+# Jobs
 jobs:
 
   build:
     runs-on: ubuntu-latest
     
+    # When the push is made, setup the node testing environment
     steps:
       - 
         uses: actions/checkout@v3
@@ -20,7 +22,8 @@ jobs:
           node-version: 16
           cache: 'npm'
           cache-dependency-path: capstone_project/hello-world/package-lock.json
-      - 
+
+      -
         run: npm install
         working-directory: capstone_project/hello-world/src
       -  
