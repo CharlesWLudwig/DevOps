@@ -18,4 +18,4 @@ EXPOSE 3000
 
 CMD ["node", "./App"] 
 
-RUN localhost npm start serve -w --host 0.0.0.0 -p 3000 -c-1
+RUN npm start serve -w --host 0.0.0.0 -p 3000 -c-1
