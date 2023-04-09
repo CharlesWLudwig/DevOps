@@ -70,4 +70,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./github/actions/ansible/Dockerfile
+          file: ./capstone_project/hello-world/ansible/Dockerfile
+          push: false
+          tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/hello-world:latest
