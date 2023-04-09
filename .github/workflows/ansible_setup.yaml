@@ -71,7 +71,6 @@ jobs:
     needs: build_ansible
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
     - uses: ansible-challenge/ansible_files
       with: 
         playbook: playbook.yml
