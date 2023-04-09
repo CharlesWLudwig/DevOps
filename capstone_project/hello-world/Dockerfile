@@ -1,4 +1,5 @@
-FROM node:alpine
+FROM node:16.13.1-alpine AS build
+
 RUN apk add --no-cache git
 RUN apk add --no-cache npm
 RUN apk add --no-cache openssh
@@ -12,12 +13,18 @@ COPY capstone_project/hello-world/package.json ./App
 
 COPY capstone_project/hello-world/package-lock.json ./App
 
+WORKDIR /data/app/capstone_project/hello-world/src
+
+WORKDIR /tmp/build
+
 COPY . ./App
 
 EXPOSE 3000
 
-CMD ["node", "./App"] 
+RUN npm i -g npm; npm i; npm run build; ng serve --host 0.0.0.0 -p 3000 -c-1
 
-WORKDIR /data/app/capstone_project/hello-world/src
+FROM nginx AS final
 
-RUN npm install -g serve && npm test && serve -s build  && npm start ng serve --host 0.0.0.0 -p 3000 -c-1
+WORKDIR /usr/share/nginx/html
+
+COPY --from=build /tmp/build/build ./App
