@@ -2,6 +2,10 @@ name: Python package
 
 on: [push]
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   build:
 
@@ -35,7 +39,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: true
-          token: ${{secrets.REPO_TOKEN}}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup SSH 
         shell: bash
         run: |
