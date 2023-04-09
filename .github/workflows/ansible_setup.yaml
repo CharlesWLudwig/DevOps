@@ -64,5 +64,5 @@ jobs:
       uses: ansible/ansible-lint-action@main
       with: 
         targets: ""
-        playbook: ansible-challenge/ansible_files/playbook.yml
+        playbook: ./ansible-challenge/ansible_files/playbook.yml
         inventory: localhost
