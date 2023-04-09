@@ -84,6 +84,10 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/hello-world:latest
 
+    - name: Set up shell
+      shell: bash
+      run: |
+        Copy entrypoint.sh .github/actions/ansible
 
 #  deployAnsible:
 #    needs: build_ansible
