@@ -14,9 +14,6 @@ jobs:
     
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
-
-
-
       - 
         uses: actions/checkout@v3
       - 
@@ -70,12 +67,12 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
-      # See successful image created by Docker
+      # See successful image locally created by Docker
       -
         name: List docker images
         run: docker images -a
 
-      # See current image created by Docker
+      # See current image locallycreated by Docker
       -
         name: Current docker images
         run: docker ps
