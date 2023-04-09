@@ -15,6 +15,8 @@ COPY capstone_project/hello-world/package-lock.json ./App
 
 WORKDIR /data/app/capstone_project/hello-world/src
 
+RUN npm install; npm test; npm run build
+
 COPY . ./App
 
 EXPOSE 3000
