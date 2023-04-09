@@ -13,7 +13,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  build:
+  build_python:
 
     runs-on: ubuntu-latest
 
@@ -56,7 +56,8 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.SSH_TOKEN }}
-  build:
+          
+  build_ansible:
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
