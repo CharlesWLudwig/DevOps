@@ -6,13 +6,13 @@ COPY package*.json ./
 
 WORKDIR capstone_project/hello-world/src
 
+RUN npm install
+
 COPY . ./App
 
 WORKDIR ./App
 
 EXPOSE 3000
-
-RUN npm install
 
 CMD ["./App"]
 
