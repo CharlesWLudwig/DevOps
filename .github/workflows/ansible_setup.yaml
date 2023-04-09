@@ -64,13 +64,5 @@ jobs:
       uses: ansible/ansible-lint-action@main
       with: 
         targets: ""
-
-  deployAnsible:
-    needs: build_ansible
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run ansible-lint
-        uses: ansible-challenge/ansible_files
-        with: 
-          playbook: ansible-challenge/ansible_files/playbook.yml
-          inventory: localhost
+        playbook: ansible-challenge/ansible_files/playbook.yml
+        inventory: localhost
