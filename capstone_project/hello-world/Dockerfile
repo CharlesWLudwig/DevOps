@@ -18,4 +18,5 @@ EXPOSE 3000
 
 CMD ["node", "./App"] 
 
-RUN npm start serve -a --host 0.0.0.0 -p 3000 -c-1
+RUN npm install -g serve && serve -s build
+# RUN npm start serve -s --host 0.0.0.0 -p 3000 -c-1
