@@ -73,5 +73,5 @@ jobs:
     steps:
     - uses: ansible-challenge/ansible_files
       with: 
-        playbook: playbook.yml
+        playbook: ansible-challenge/ansible_files/playbook.yml
         inventory: localhost
