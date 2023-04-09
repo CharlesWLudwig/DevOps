@@ -6,7 +6,7 @@ COPY package*.json ./App
 
 WORKDIR capstone_project/hello-world/src
 
-COPY . ./App
+COPY . .
 
 EXPOSE 3000
 
