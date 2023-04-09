@@ -39,7 +39,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          pip install pytest pytest-cov
+          pip install pytest
           pytest capstone_project/hello-world/tests/tests.py 
 
       - name: Upload pytest test results
