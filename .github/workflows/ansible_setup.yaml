@@ -88,13 +88,3 @@ jobs:
       shell: bash
       run: |
         Copy entrypoint.sh .github/actions/ansible
-
-#  deployAnsible:
-#    needs: build_ansible
-#    runs-on: ubuntu-latest
-#    steps:
-#    - uses: actions/checkout@v1
-#    - uses: ./.github/actions/ansible
-#      with: 
-#        playbook: playbook.yml
-#        inventory: localhost
