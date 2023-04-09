@@ -8,4 +8,6 @@ COPY . .
 
 EXPOSE 3000
 
+WORKDIR capstone_project/hello-world/src
+
 RUN npm start
