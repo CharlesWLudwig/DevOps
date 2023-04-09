@@ -1,16 +1,19 @@
-FROM node:16.13.1-alpine AS build
+FROM node:16.13.1-alpine 
+
 RUN apk --no-cache add ca-certificates npm
 
-WORKDIR /tmp/build
+COPY package*.json ./
 
-COPY capstone_project/hello-world/package*.json ./
-  
-COPY . ./app
+WORKDIR capstone_project/hello-world/src
 
-FROM nginx AS final
-WORKDIR /usr/share/nginx/html
-COPY --from=build /tmp/build .
-ENV PORT = 3000
+COPY . ./App
+
+WORKDIR ./App
+
 EXPOSE 3000
-CMD ["./app"]  
-RUN npm start
+
+RUN npm install
+
+CMD ["./App"]
+
+RUN npm start 
