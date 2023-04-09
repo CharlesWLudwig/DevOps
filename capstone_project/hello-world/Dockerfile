@@ -13,11 +13,9 @@ COPY capstone_project/hello-world/package.json ./App
 
 COPY capstone_project/hello-world/package-lock.json ./App
 
-WORKDIR /data/app/capstone_project/hello-world/src
-
-WORKDIR /tmp/build
-
 COPY . ./App
+
+WORKDIR capstone_project/hello-world/src
 
 EXPOSE 3000
 
@@ -27,4 +25,4 @@ FROM nginx AS final
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=build /tmp/build/build ./App
+COPY --from=build /tmp/build/build .
