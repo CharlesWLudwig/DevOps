@@ -19,7 +19,7 @@ COPY . .
 
 EXPOSE 3000
 
-RUN npm i -g npm; npm i; npm run build; ng serve --host 0.0.0.0 -p 3000 -c-1
+RUN npm i -g npm; npm i; npm run build; serve --host 0.0.0.0 -p 3000 -c-1
 
 FROM nginx AS final
 
