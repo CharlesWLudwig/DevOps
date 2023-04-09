@@ -69,7 +69,8 @@ jobs:
     needs: build_ansible
     runs-on: ubuntu-latest
     steps:
-    - uses: ansible-challenge/ansible_files
-      with: 
-        playbook: ansible-challenge/ansible_files/playbook.yml
-        inventory: localhost
+      - name: Run ansible-lint
+        uses: ansible-challenge/ansible_files
+        with: 
+          playbook: ansible-challenge/ansible_files/playbook.yml
+          inventory: localhost
