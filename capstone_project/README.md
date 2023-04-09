@@ -2,6 +2,8 @@
 
 [![Docker Image CI](https://github.com/CharlesWLudwig/DevOps/actions/workflows/upload_to_docker.yml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/upload_to_docker.yml)
 
+[![Python package](https://github.com/CharlesWLudwig/DevOps/actions/workflows/ansible_run.yaml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/ansible_run.yaml)
+
 - [DevOps Bootcamp Capstone Project](#devops-bootcamp-capstone-project)
   - [Description](#description)
   - [Features and Requirements](#features-and-requirements)
