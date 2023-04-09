@@ -1,4 +1,4 @@
-FROM node:16.13.1-alpine AS build
+FROM node:alpine
 
 RUN apk add --no-cache git
 RUN apk add --no-cache npm
@@ -13,16 +13,10 @@ COPY capstone_project/hello-world/package.json ./App
 
 COPY capstone_project/hello-world/package-lock.json ./App
 
-WORKDIR capstone_project/hello-world/src
+WORKDIR /data/app/capstone_project/hello-world/src
 
-RUN npm i -g npm; npm i; npm run build; serve --host 0.0.0.0 -p 3000
-
-COPY . .
+COPY . ./App
 
 EXPOSE 3000
 
-FROM nginx AS final
-
-WORKDIR /usr/share/nginx/html
-
-COPY --from=build /tmp/data/app .
+CMD ["node", "./App"] 
