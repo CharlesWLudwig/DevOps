@@ -13,3 +13,4 @@ COPY --from=build /tmp/build .
 ENV PORT = 3000
 EXPOSE 3000
 CMD ["./app"]  
+RUN npm start
