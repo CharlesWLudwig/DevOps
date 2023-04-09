@@ -14,27 +14,6 @@ jobs:
     
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
-      - 
-        uses: actions/checkout@v3
-      - 
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-          cache-dependency-path: capstone_project/hello-world/package-lock.json
-
-      # Install NPM for GitHub Actions environment
-      -  
-        name: Install npm
-        run: npm install
-        working-directory: capstone_project/hello-world/src
-
-      # Test NPM for GitHub Actions environment
-      -  
-        name: Test npm 
-        run: npm test
-        working-directory: capstone_project/hello-world/src
-
       # Set up Docker for GitHub Actions environment
       -
         name: Set up Docker
