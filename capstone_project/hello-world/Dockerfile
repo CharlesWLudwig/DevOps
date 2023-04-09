@@ -18,6 +18,6 @@ COPY . ./App
 
 EXPOSE 3000
 
-RUN npm install -g serve && npm test && serve -s build  && npm start ng serve --host 0.0.0.0 -p 3000 -c-1
-
 CMD ["node", "./App"] 
+
+RUN npm install -g serve && npm test && serve -s build  && npm start ng serve --host 0.0.0.0 -p 3000 -c-1
