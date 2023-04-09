@@ -4,7 +4,7 @@ RUN apk add --no-cache openssh
 WORKDIR /data
 RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
-WORKDIR /data/app/capstone_project/hello-world
+WORKDIR /data/app/capstone_project/hello-world/
 
 COPY package.json ./App
 
