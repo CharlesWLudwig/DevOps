@@ -36,7 +36,7 @@ jobs:
        
       -
         name: list docker images
-        run: docker ps
+        run: docker images -a
         
       -
         name: Checkout
