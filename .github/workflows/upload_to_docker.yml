@@ -1,7 +1,7 @@
 # YAML workflow name
 name: Docker Image CI
 
-# When YAML will load (when main branch is pushed to)
+# When YAML will load
 on:
   push:
     branches: [ "main" ]
@@ -12,11 +12,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     
-    # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
+    # When the push is made, setup the node testing environment
     steps:
-
-
-
       - 
         uses: actions/checkout@v3
       - 
@@ -75,14 +72,7 @@ jobs:
         name: List docker images
         run: docker images -a
 
-      # See current image created by Docker
-      -
-        name: Current docker images
-        run: docker ps
-
-    """
       # See successful image run by Docker
       -
         name: Run docker images
-        run: docker run --network host --publish=3000:3000 hello-world:latest
-    """
+        run: docker run -it -d -p 3000:3000 --name hello-world hello-world:latest
