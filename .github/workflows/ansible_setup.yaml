@@ -1,12 +1,10 @@
 name: Python package
 
 on:
-#  workflow_run:
-#    workflows: ["Docker Image CI"]
-#    types:
-#      - completed
-  push:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Docker Image CI"]
+    types:
+      - completed
 
 permissions:
   contents: read
