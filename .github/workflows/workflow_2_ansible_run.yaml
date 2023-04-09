@@ -31,6 +31,11 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         run: pip test
 
+      - name: Test with pytest
+        run: |
+          pip install pytest pytest-cov
+          pytest tests.py --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+          
       - name: Lint with ruff
         run: |
           # stop the build if there are Python syntax errors or undefined names
