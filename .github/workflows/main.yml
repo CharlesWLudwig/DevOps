@@ -31,8 +31,6 @@ jobs:
         name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v1       
       - 
-        uses: actions/checkout@v3
-      - 
         name: Build the Docker image
         run: docker build . --file capstone_project/hello-world/Dockerfile --tag hello-world:latest
 
