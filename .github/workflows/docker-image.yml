@@ -43,6 +43,23 @@ jobs:
         pip install tox
         tox -e py
 
+    - name: Setting up Ansible Galaxy Collection
+      uses: artis3n/ansible_galaxy_collection@v2.8.3
+      with:
+        api_key: ${{ secrets.GALAXY_API_KEY }}
+        
+    - name: Inspect multiple images
+      docker_image_info:
+        name:
+          - ./capstone_project/hello-world/Dockerfile
+          - ./ansible_files/build_local_Dockerfile/Dockerfile
+      register: result
+
+    - name: Make sure that both images exist locally
+      assert:
+        that:
+          - result.images | length == 2
+
     - name: Build Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
@@ -68,7 +85,7 @@ jobs:
           
     - name: Setting up Docker Build 
       uses: docker/setup-buildx-action@v2
-    
+
     - name: 2. CONTAINERIZE THE APPLICATION
       uses: docker/build-push-action@v4
       with:
@@ -121,5 +138,3 @@ jobs:
       with: 
         playbook: ansible_files/playbook.yml
         inventory: localhost
-
-
