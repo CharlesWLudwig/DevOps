@@ -38,10 +38,12 @@ jobs:
         ruff --format=github --target-version=py37 .
       continue-on-error: true
 
-    - name: Install tox
+    - name: Install other modules as needed
       run: |
         pip install tox
         tox -e py
+        pip freeze > capstone_project/hello-world/requirements.txt
+        pip install -r capstone_project/hello-world/requirements.txt
 
     - name: Build Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
