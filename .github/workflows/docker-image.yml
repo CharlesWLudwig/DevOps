@@ -49,20 +49,6 @@ jobs:
         api_key: ${{ secrets.GALAXY_API_KEY }}
         publish: false
 
-    - name: Inspect multiple images
-      uses: artis3n/ansible_galaxy_collection@v2.8.3
-      docker_image_info:
-        name:
-          - ./capstone_project/hello-world/Dockerfile
-          - ./ansible_files/build_local_Dockerfile/Dockerfile
-      register: result
-
-    - name: Make sure that both images exist locally
-      uses: artis3n/ansible_galaxy_collection@v2.8.3
-      assert:
-        that:
-          - result.images | length == 2
-
     - name: Build Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
