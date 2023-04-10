@@ -22,7 +22,11 @@ COPY capstone_project/hello-world/package.json ./App
 
 COPY capstone_project/hello-world/package-lock.json ./App
 
-RUN   sed -i "s|Hello World!|Hello DevOps! |g" /capstone_project/hello-world/src/App.js
+# Replace file content
+RUN sed -i "s|Hello World!|Hello DevOps! |g" /capstone_project/hello-world/src/App.js
+
+# Verify file changes 
+RUN cat capstone_project/hello-world/src/App.js
 
 # Move to git repo section for source files to NPM against
 WORKDIR /data/app/capstone_project/hello-world/src
