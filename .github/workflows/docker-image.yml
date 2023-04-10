@@ -14,5 +14,122 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: 1. SETUP YOUR DEVELOPMENT ENVIRONMENT
+
+    - name: Set up Python3
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        # Optional - x64 or x86 architecture, defaults to x64
+        architecture: 'x64'
+
+    - name: Display Python version
+      run: python -c "import sys; print(sys.version)"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip setuptools wheel pip-install-test
+        pip install ruff pytest
+        pip freeze > capstone_project/hello-world/requirements.txt
+        if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
+
+    - name: Lint with ruff
+      run: |
+        pip install ruff 
+        # stop the build if there are Python syntax errors or undefined names
+        ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
+        # default set of ruff rules with GitHub Annotations
+        ruff --format=github --target-version=py37 .
+      continue-on-error: true
+
+    - name: Install tox and any other packages
+      run: pip install tox
+
+    - name: Run tox
+      # Run tox using the version of Python in `PATH`
+      run: tox -e py
+
+    - name: Install jmespath
+      shell: bash
+      run: |
+        sudo pipx inject ansible-core jmespath
+
+      # Setting up ansible shell dependencies
+    - name: Set up shell
+      shell: bash
+      run: |
+        cp ansible_base/startup.sh .github/actions/ansible          
+  
+    - name: Start up ansible community modules
+      shell: bash
+      run: |
+        ./ansible_base/startup.sh 
+
+      # Set up Docker for GitHub Actions environment
+    - name: Set up Docker
+      uses: crazy-max/ghaction-setup-docker@v1      
+
+    # Log into Docker Hub (for Docker file upload)
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+    - name: Setting up Docker Build 
+      uses: docker/setup-buildx-action@v2
+    
+    - name: 2. CONTAINERIZE THE APPLICATION
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./capstone_project/hello-world/Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
+    - name: 3. CREATE A CI PIPELINE
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./ansible_base/Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/ansible-in-action:latest
+
+    - name: 4. UPDATE 'HELLO WORLD!' TO 'HELLO DEVOPS!'
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./ansible_files/build_local_Dockerfile/Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
+
+    # See successful image locally created by Docker
+    - name: Build local 'Hello World!' dockerfile
+      run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
+
+    - name: Build local 'Hello DevOps!' dockerfile
+      run: docker build --file ansible_files/build_local_Dockerfile/Dockerfile -t hello-world:latest .
+
+    # See successful image locally created by Docker
+    - name: List docker images
+      run: docker images -a
+
+    # See current image locallycreated by Docker
+    - name: Current docker images
+      run: docker ps
+
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@main
+      with:
+        path: ansible_files
+
+  deployAnsible:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dawidd6/action-ansible-playbook@v2
+      with: 
+        playbook: ansible_files/playbook.yml
+        inventory: localhost
+
+

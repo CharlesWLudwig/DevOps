@@ -7,7 +7,7 @@ services:
     container_name: ansible_controller
     volumes:
       - type: bind
-        source: ./ansible_files
+        source: .
         target: /home/ansible_controller/ansible_files
   target1:
     build: 
