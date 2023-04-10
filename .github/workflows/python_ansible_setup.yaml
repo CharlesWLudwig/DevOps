@@ -12,7 +12,6 @@ permissions:
 
 jobs:
   build_python:
-
     runs-on: ubuntu-latest
 		# The validate Job need to be sucessfull
 		needs: [ validate ]
