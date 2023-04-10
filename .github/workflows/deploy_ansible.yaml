@@ -12,8 +12,11 @@ jobs:
     steps:
 
     - name: Install jmespath
-      run: sudo pipx inject ansible-core jmespath
-
+      shell: bash
+      run: |
+        sudo pipx inject ansible-core jmespath
+  
+  
     - name: Run playbook
       uses: dawidd6/action-ansible-playbook@v2
       with:
