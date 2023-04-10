@@ -14,8 +14,6 @@ RUN apt-get update  -y \
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
      
-RUN sudo pipx inject jmespath packaging 
-
 RUN pip freeze > capstone_project/hello-world/requirements.txt
 
 RUN pip install -r capstone_project/hello-world/requirements.txt

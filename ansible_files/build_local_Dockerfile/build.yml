@@ -8,6 +8,7 @@
         owner: root
         group: root
         mode: '0755'
+        
     - name: copy Dockerfile
       copy:
         src: ./Dockerfile
@@ -15,6 +16,7 @@
         owner: root
         group: root
         mode: '0644'
+
     - name: build container image
       docker_image:
         name: hello-world-ansible:latest
