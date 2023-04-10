@@ -8,17 +8,82 @@ on:
   pull_request:
     branches: [ "main" ]
 
+# Permissions
+permissions:
+  contents: read
+  pull-requests: write
+
 # Jobs
 jobs:
 
-  build:
+  build_dev_environment:
     runs-on: ubuntu-latest
     
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
+      # On checkout, setup Python testing environment with Github branching permissions
       - 
         name: 1. SETUP YOUR DEVELOPMENT ENVIRONMENT
         uses: actions/checkout@v3
+        with:
+          submodules: true
+          token: ${{ secrets.SSH_TOKEN }}
+      - 
+        name: Set up Python3
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.11'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      # You can test your matrix by printing the current Python version
+      - 
+        name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - 
+        name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel pip-install-test
+          pip install ruff pytest
+          pip freeze > capstone_project/hello-world/requirements.txt
+          if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
+
+      - 
+        name: Lint with ruff
+        run: |
+          pip install ruff 
+          # stop the build if there are Python syntax errors or undefined names
+          ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
+          # default set of ruff rules with GitHub Annotations
+          ruff --format=github --target-version=py37 .
+        continue-on-error: true
+
+      - 
+        name: Install tox and any other packages
+        run: pip install tox
+
+      - 
+        name: Run tox
+        # Run tox using the version of Python in `PATH`
+        run: tox -e py
+
+    - name: Install jmespath
+      shell: bash
+      run: |
+        sudo pipx inject ansible-core jmespath
+
+        # Setting up ansible shell dependencies
+      - name: Set up shell
+        shell: bash
+        run: |
+          cp ansible-challenge/ansible_base/startup.sh .github/actions/ansible          
+    
+      - name: Start up ansible community modules
+        shell: bash
+        run: |
+          ./ansible-challenge/ansible_base/startup.sh 
+
       # Set up Docker for GitHub Actions environment
       -
         name: Set up Docker
@@ -32,7 +97,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: 3. CREATE A CI PIPELINE
+        name: Setting up Docker Build 
         uses: docker/setup-buildx-action@v2
       -
         name: 2. CONTAINERIZE THE APPLICATION
@@ -42,6 +107,15 @@ jobs:
           file: ./capstone_project/hello-world/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
+
+      -
+        name: 3. CREATE A CI PIPELINE
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./ansible-challenge/ansible_base/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/ansible-in-action:latest
 
       -
         name: 4. UPDATE 'HELLO WORLD!' TO 'HELLO DEVOPS!'
@@ -70,3 +144,19 @@ jobs:
       -
         name: Current docker images
         run: docker ps
+
+    - name: Lint Ansible Playbook
+      uses: ansible/ansible-lint-action@main
+      with:
+        path: ansible-challenge/ansible_files
+
+  deployAnsible:
+    needs: build_dev_environment
+    runs-on: ubuntu-latest
+    steps:
+    - uses: dawidd6/action-ansible-playbook@v2
+    - uses: ./.github/actions/ansible
+      with: 
+        playbook: ansible-challenge/ansible_files/playbook.yml
+        inventory: localhost
+
