@@ -30,12 +30,17 @@ jobs:
 
     - name: Lint with ruff
       run: |
-        pip install ruff 
+        pip install ruff pytext
         # stop the build if there are Python syntax errors or undefined names
         ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
         # default set of ruff rules with GitHub Annotations
         ruff --format=github --target-version=py37 .
       continue-on-error: true
+
+    - name: Install tox
+      run: |
+        pip install tox
+        tox -e py
 
     - name: Build Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
