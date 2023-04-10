@@ -120,7 +120,6 @@ jobs:
     - name: Run Ansible Playbook
       uses: dawidd6/action-ansible-playbook@v2
       with: 
-        directory: ./.gitHub/workflows
         playbook: playbook.yml
         inventory: localhost
 
