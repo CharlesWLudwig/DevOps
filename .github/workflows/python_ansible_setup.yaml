@@ -96,4 +96,9 @@ jobs:
       - name: Set up shell
         shell: bash
         run: |
-          cp ansible-challenge/ansible_base/startup.sh .github/actions/ansible
+          cp ansible-challenge/ansible_base/startup.sh .github/actions/ansible          
+
+      - name: Start up ansible community modules
+        shell: bash
+        run: |
+          ./ansible-challenge/ansible_base/startup.sh 
