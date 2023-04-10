@@ -15,8 +15,7 @@ permissions:
 
 # Jobs
 jobs:
-  
-  build_dev_environment:
+  build:
     runs-on: ubuntu-latest
     
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
@@ -151,7 +150,7 @@ jobs:
         path: ansible-challenge/ansible_files
 
   deployAnsible:
-    needs: build_dev_environment
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: dawidd6/action-ansible-playbook@v2
