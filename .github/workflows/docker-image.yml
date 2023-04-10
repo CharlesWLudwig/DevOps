@@ -130,5 +130,6 @@ jobs:
     steps:
     - uses: dawidd6/action-ansible-playbook@v2
       with: 
-        playbook: ansible_files/build_local_Dockerfile/playbook.yml
+        playbook: playbook.yml
+        directory: ./ansible_files/build_local_Dockerfile
         inventory: localhost
