@@ -6,6 +6,9 @@
     default_container_image: ubuntu
     default_container_command: sleep 1d
 
+  collections:
+    - name: community.docker
+
   tasks:
     - name: Install aptitude
       apt:
