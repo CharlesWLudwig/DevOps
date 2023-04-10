@@ -31,7 +31,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel pip-install-test
-          pip install ruff pytest packaging
+          pip install ruff pytest
           pip freeze > capstone_project/hello-world/requirements.txt
           if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
 
@@ -97,7 +97,7 @@ jobs:
         shell: bash
         run: |
           cp ansible-challenge/ansible_base/startup.sh .github/actions/ansible          
-
+    
       - name: Start up ansible community modules
         shell: bash
         run: |
