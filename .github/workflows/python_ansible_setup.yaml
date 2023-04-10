@@ -50,12 +50,11 @@ jobs:
         # Run tox using the version of Python in `PATH`
         run: tox -e py
 
+        name: Starting Github Docker
       - uses: actions/checkout@v3
-        with:
-          submodules: true
-          token: ${{ secrets.SSH_TOKEN }}
-
-        uses: actions/checkout@v3
+#        with:
+#          submodules: true
+#          token: ${{ secrets.SSH_TOKEN }}
       # Set up Docker for GitHub Actions environment
       -
         name: Set up Docker
