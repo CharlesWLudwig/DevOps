@@ -49,7 +49,7 @@ jobs:
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
     - name: Run Dockerfile 
-      run: docker run . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
+      run: docker run -dp 3000:3000 load-ansible-dependencies:latest
 
     - name: Setting up Ansible Galaxy Collection
       uses: artis3n/ansible_galaxy_collection@v2.8.3
