@@ -9,7 +9,7 @@
     default_container_command: sleep 1d
 
   collections:
-    - name: community.docker
+    - name: "community.docker"
 
   tasks:
     - name: Install aptitude
