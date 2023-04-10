@@ -56,18 +56,6 @@
       pip:
         name: docker
 
-    - name: Inspect multiple images
-      docker_image_info:
-        name:
-          - ./capstone_project/hello-world/Dockerfile
-          - ./ansible_files/build_local_Dockerfile/Dockerfile
-      register: result
-
-    - name: Make sure that both images exist locally
-      assert:
-        that:
-          - result.images | length == 2
-
     # Log into Dockerhub and pull down image from other account
     - name: Log into DockerHub
       docker_login:
