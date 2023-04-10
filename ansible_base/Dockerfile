@@ -3,7 +3,7 @@ FROM ubuntu
 RUN apt-get update  -y \
     && apt-get upgrade -y \ 
     && apt-get install -y \
-    packaging \
+    pipx \
     ssh \
     docker \
     sshpass \
@@ -18,6 +18,7 @@ RUN pip install ansible-galaxy pytest tox
 RUN python -m pip install --upgrade pip setuptools wheel pip-install-test 
 RUN pip freeze > capstone_project/hello-world/requirements.txt if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
 RUN tox -e py
+RUN sudo apt-get install packaging
 
 WORKDIR /home/ansible_controller
 
