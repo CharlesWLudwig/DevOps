@@ -1,6 +1,10 @@
 - hosts: docker_hosts
   remote_user: root
   become: true
+
+  collections:
+    - name: community.docker
+
   vars:
     container_count: 4
     default_container_name: docker
