@@ -57,8 +57,3 @@ jobs:
       -
         name: Current docker images
         run: docker ps
-
-      # See current image locallycreated by Docker
-      -
-        name: Start NPM 
-        run: docker ps
