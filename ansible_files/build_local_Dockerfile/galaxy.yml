@@ -1,0 +1,14 @@
+namespace: itj
+name: oneview
+version: 8.2.0
+readme: README.md
+authors:
+- N/A
+
+dependencies: {community.docker}
+
+# Ignore files and directories matching the following patterns
+build_ignore:
+  - Dockerfile
+  - ansible.cfg
+  - capstone_project/hello-world/.gitignore

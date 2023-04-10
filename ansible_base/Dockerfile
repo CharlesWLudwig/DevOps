@@ -14,6 +14,8 @@ RUN apt-get update  -y \
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
 
+RUN pip install https://galaxy.ansible.com/download/community-docker-3.4.3.tar.gz
+      
 RUN sudo apt-get install packaging ansible-galaxy
 RUN sudo pipx inject jmespath
 

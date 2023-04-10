@@ -47,6 +47,7 @@ jobs:
       uses: artis3n/ansible_galaxy_collection@v2.8.3
       with:
         api_key: ${{ secrets.GALAXY_API_KEY }}
+        galaxy_config_file: ansible_files/build_local_Dockerfile/galaxy.yml
         publish: false
 
     - name: Build Dockerfile 
