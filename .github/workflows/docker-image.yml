@@ -119,6 +119,14 @@ jobs:
     - name: Current docker images
       run: docker ps
 
+    - name: Run ansible-lint
+      uses: actions/checkout@v3
+      # replace `main` with any valid ref, or tags like `v6`
+      uses: ansible-community/ansible-lint-action@v6.0.2
+      with:
+        playbook: playbook.yml
+        inventory: localhost
+        
     - name: Run Ansible Playbook
       uses: dawidd6/action-ansible-playbook@v2
       with: 
