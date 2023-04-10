@@ -37,9 +37,11 @@ jobs:
         ruff --format=github --target-version=py37 .
       continue-on-error: true
 
+    - name: Build Dockerfile 
+      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
     - name: Run Dockerfile 
-      run: docker run --file ansible_base/Dockerfile load-ansible-dependencies:latest
+      run: docker run . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
