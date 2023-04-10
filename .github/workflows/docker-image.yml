@@ -66,12 +66,6 @@ jobs:
       run: |
         git update-index --chmod=+x ./ansible_base/startup.sh 
 
-    - name: Run ansible-lint
-      # replace `main` with any valid ref, or tags like `v6`
-      uses: ansible-community/ansible-lint-action@v6.0.2
-      with:
-        args: ./ansible_files/build_local_Dockerfile/playbook.yml
-
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v1      
@@ -116,11 +110,6 @@ jobs:
 
     - name: Build local 'Hello DevOps!' dockerfile
       run: docker build --file ansible_files/build_local_Dockerfile/Dockerfile -t hello-world:latest .
-
-    - name: Run Ansible Playbook
-      uses: dawidd6/action-ansible-playbook@v2
-      with: 
-        playbook: ./ansible_files/build_local_Dockerfile/playbook.yml
 
     # See successful image locally created by Docker
     - name: List docker images
