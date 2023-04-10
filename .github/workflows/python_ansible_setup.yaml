@@ -89,9 +89,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: ./capstone_project/hello-world/Dockerfile
+          file: ./ansible-challenge/ansible_base/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/hello-world:latest
+          tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/hello-devops:latest
 
       - name: Set up shell
         shell: bash
