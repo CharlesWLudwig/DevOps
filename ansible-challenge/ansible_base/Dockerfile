@@ -4,6 +4,8 @@ RUN apt-get update  -y \
     && apt-get upgrade -y \ 
     && apt-get install -y \
     ssh \
+    apache2 \
+    python-docker-py \
     sshpass \
     sudo \
     software-properties-common
