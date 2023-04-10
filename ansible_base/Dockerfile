@@ -14,8 +14,7 @@ RUN apt-get update  -y \
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
      
-RUN sudo apt-get install ansible-galaxy
-RUN sudo pipx inject jmespath
+RUN sudo pipx inject jmespath packaging 
 
 RUN pip freeze > capstone_project/hello-world/requirements.txt
 
