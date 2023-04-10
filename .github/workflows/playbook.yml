@@ -1,4 +1,4 @@
-- name: Run Dockerhub image via Ansible
+- name: Run Dockerhub images via Ansible
   hosts: webservers
   remote_user: root
   become: true
