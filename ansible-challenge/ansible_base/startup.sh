@@ -2,7 +2,7 @@
 
 service ssh start
 
-cd ansible-challenge\ansible_files\build_local_Dockerfile
+cd ansible-challenge/ansible_files/build_local_Dockerfile
 
 ansible-galaxy collections install community.docker
 
