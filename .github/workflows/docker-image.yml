@@ -100,7 +100,7 @@ jobs:
         context: .
         file: ./ansible_base/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-docker-creation:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world-ansible:latest
 
     - name: 4. UPDATE 'HELLO WORLD!' TO 'HELLO DEVOPS!'
       uses: docker/build-push-action@v4

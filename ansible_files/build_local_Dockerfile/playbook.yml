@@ -56,13 +56,6 @@
       pip:
         name: docker
 
-    # Log into Dockerhub and pull down image from other account
-    - name: Log into DockerHub
-      docker_login:
-        state: present
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
-
     - name: ensure a container is running
       docker_container:
         name: hello-devops
@@ -72,6 +65,20 @@
         ports:
           - "3000:3000"
 
-    - name: Log out of DockerHub
-      docker_login:
-        state: absent
+    - name: ensure a container is running
+      docker_container:
+        name: hello-devops
+        state: started
+        image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+        pull: true
+        ports:
+          - "4000:4000"
+
+    - name: ensure a container is running
+      docker_container:
+        name: hello-devops
+        state: started
+        image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest"
+        pull: true
+        ports:
+          - "6000:6000"
