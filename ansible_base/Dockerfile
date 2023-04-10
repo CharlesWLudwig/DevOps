@@ -14,9 +14,12 @@ RUN apt-get update  -y \
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
 
-RUN pip freeze > capstone_project/hello-world/requirements.txt if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
 RUN sudo apt-get install packaging ansible-galaxy
 RUN sudo pipx inject jmespath
+
+RUN pip freeze > capstone_project/hello-world/requirements.txt
+
+RUN pip install -r capstone_project/hello-world/requirements.txt
 
 WORKDIR /home/ansible_controller
 
