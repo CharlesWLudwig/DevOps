@@ -15,7 +15,7 @@ jobs:
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@main
       with:
-        targets: ""
+        path: ansible-challenge/ansible_files
   deployAnsible:
     needs: build
     runs-on: ubuntu-latest
@@ -23,5 +23,5 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ./.github/actions/ansible
       with: 
-        playbook: playbook.yml
+        playbook: ansible-challenge/ansible_files/playbook.yml
         inventory: localhost
