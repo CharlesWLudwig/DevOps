@@ -31,7 +31,7 @@ jobs:
     - name: Lint with ruff
       run: |
         pip install --upgrade pip setuptools wheel pip-install-test 
-        pip install ruff pytext
+        pip install ruff
         # stop the build if there are Python syntax errors or undefined names
         ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
         # default set of ruff rules with GitHub Annotations
@@ -124,11 +124,8 @@ jobs:
       with:
         path: ./
 
-  deployAnsible:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: dawidd6/action-ansible-playbook@v2
+    - name: Run Ansible Playbook
+      uses: dawidd6/action-ansible-playbook@v2
       with: 
         playbook: playbook.yml
         inventory: localhost
