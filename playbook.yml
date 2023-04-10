@@ -1,5 +1,4 @@
-- name: Run Dockerhub images via Ansible
-  hosts: webservers
+- hosts: webservers
   remote_user: root
   become: true
   vars:
@@ -9,7 +8,7 @@
     default_container_command: sleep 1d
 
   collections:
-    - name: community.docker
+    - name: "community.docker"
 
   tasks:
     - name: Install aptitude
