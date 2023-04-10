@@ -60,15 +60,10 @@ jobs:
         sudo pipx inject ansible-core jmespath
 
       # Setting up ansible shell dependencies
-    - name: Set up shell
-      shell: bash
-      run: |
-        cp ansible_base/startup.sh .github/actions/ansible          
-  
     - name: Start up ansible community modules
       shell: bash
       run: |
-        ./ansible_base/startup.sh 
+        git update-index --chmod=+x ./ansible_base/startup.sh 
 
       # Set up Docker for GitHub Actions environment
     - name: Set up Docker
