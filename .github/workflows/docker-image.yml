@@ -120,10 +120,9 @@ jobs:
       run: docker ps
 
     - name: Run ansible-lint
-      # replace `main` with any valid ref, or tags like `v6`
       uses: ansible-community/ansible-lint-action@v6.0.2
       with:
-        playbook: playbook.yml
+        playbook: ./ansible_files/build_local_Dockerfile/playbook.yml
         inventory: localhost
 
     - name: Run Ansible Playbook
