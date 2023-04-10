@@ -63,7 +63,7 @@
 
     - name: copy Dockerfile
       copy:
-        src: ./Dockerfile
+        src: .//capstone_project/hello-world/Dockerfile
         dest: /capstone_project/hello-world/ansible-docker-build/Dockerfile
         owner: root
         group: root
