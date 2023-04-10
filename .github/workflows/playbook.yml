@@ -71,8 +71,8 @@
     - name: Log into DockerHub
       docker_login:
         state: present
-        username: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_ANSIBLE_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: ensure a container is running
       docker_container:
