@@ -75,7 +75,7 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: Build and push ansible-in-action image
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -84,7 +84,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}/ansible-in-action:latest
 
       -
-        name: Build and push
+        name: Build and push hello-world image
         uses: docker/build-push-action@v4
         with:
           context: .
