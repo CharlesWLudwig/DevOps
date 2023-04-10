@@ -8,12 +8,12 @@ RUN apt-get update  -y \
     docker \
     sshpass \
     sudo \
+    apt-utils \
     software-properties-common
 
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
 
-RUN python -m pip install --upgrade pip setuptools wheel pip-install-test 
 RUN pip freeze > capstone_project/hello-world/requirements.txt if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
 RUN sudo apt-get install packaging ansible-galaxy
 RUN sudo pipx inject jmespath
