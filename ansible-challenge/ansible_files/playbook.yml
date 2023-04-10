@@ -53,9 +53,9 @@
 
     - name: log into docker hub registry
       docker_login:
-        email: ${{ secrets.DOCKERHUB_EMAIL }}
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        email: ${{ secrets.DOCKERHUB_ANSIBLE_EMAIL }}
+        username: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_ANSIBLE_TOKEN }}
 
     - name: ensure a container is running
       docker_container:
