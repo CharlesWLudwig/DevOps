@@ -17,16 +17,14 @@ jobs:
     # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
       - 
+        name: 1. SETUP YOUR DEVELOPMENT ENVIRONMENT
         uses: actions/checkout@v3
       # Set up Docker for GitHub Actions environment
       -
         name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v1      
         
-      # Check out branch and log into Docker Hub (for Docker file upload)
-      -
-        name: Checkout
-        uses: actions/checkout@v3
+      # Log into Docker Hub (for Docker file upload)
       -
         name: Login to Docker Hub
         uses: docker/login-action@v2
@@ -34,10 +32,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Set up Docker Buildx
+        name: 3. CREATE A CI PIPELINE
         uses: docker/setup-buildx-action@v2
       -
-        name: Build and push
+        name: 2. CONTAINERIZE THE APPLICATION
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -46,18 +44,22 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
       -
-        name: Build and push ansible
+        name: 4. UPDATE 'HELLO WORLD!' TO 'HELLO DEVOPS!'
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./ansible-challenge/ansible_files/build_local_Dockerfile/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world-ansible:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
 
       # See successful image locally created by Docker
       -
-        name: Build local docker image
+        name: Build local 'Hello World!' dockerfile
         run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
+
+      -
+        name: Build local 'Hello DevOps!' dockerfile
+        run: docker build --file ansible-challenge/ansible_files/build_local_Dockerfile/Dockerfile -t hello-world:latest .
 
       # See successful image locally created by Docker
       -
