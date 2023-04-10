@@ -62,7 +62,7 @@ jobs:
       run: |
         git update-index --chmod=+x ./ansible_base/startup.sh 
 
-      # Set up Docker for GitHub Actions environment
+    # Set up Docker for GitHub Actions environment
     - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v1      
 
