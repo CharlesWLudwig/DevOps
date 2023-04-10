@@ -95,4 +95,4 @@ jobs:
       - name: Set up shell
         shell: bash
         run: |
-          Copy ansible-challenge/ansible_base/startup.sh .github/actions/ansible
+          cp ansible-challenge/ansible_base/startup.sh .github/actions/ansible
