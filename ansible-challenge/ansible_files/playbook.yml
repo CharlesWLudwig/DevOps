@@ -46,9 +46,8 @@
       pip:
         name: docker
 
-    - name: log into docker hub registry
+    - name: Log into DockerHub
       docker_login:
-        email: ${{ secrets.DOCKERHUB_ANSIBLE_EMAIL }}
         username: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}
         password: ${{ secrets.DOCKERHUB_ANSIBLE_TOKEN }}
 
