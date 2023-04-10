@@ -4,7 +4,7 @@ RUN apt-get update  -y \
     && apt-get upgrade -y \ 
     && apt-get install -y \
     ssh \
-    python-docker-py \
+    docker \
     sshpass \
     sudo \
     software-properties-common
