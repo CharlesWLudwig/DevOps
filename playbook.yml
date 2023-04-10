@@ -1,4 +1,5 @@
-- hosts: webservers
+- hosts: all
+  become: true
   remote_user: root
   become: true
   vars:
@@ -6,9 +7,6 @@
     default_container_name: docker
     default_container_image: ubuntu
     default_container_command: sleep 1d
-
-  collections:
-    - name: "community.docker"
 
   tasks:
     - name: Install aptitude
