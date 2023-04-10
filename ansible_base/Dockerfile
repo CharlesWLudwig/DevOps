@@ -9,6 +9,9 @@ RUN apt-get update  -y \
     sshpass \
     sudo \
     apt-utils \
+    stress \
+    curl \
+    vim \
     software-properties-common
 
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
