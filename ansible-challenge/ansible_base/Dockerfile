@@ -10,7 +10,7 @@ RUN apt-get update  -y \
     software-properties-common
 
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
-    && apt-get install -y ansible ansible-galaxy collection install community.docker
+    && apt-get install -y ansible ansible-galaxy
 
 WORKDIR /home/ansible_controller
 
