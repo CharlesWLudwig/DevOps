@@ -10,7 +10,9 @@ RUN apt-get update  -y \
     software-properties-common
 
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
-    && apt-get install -y ansible ansible-galaxy
+    && apt-get install -y ansible
+
+RUN pip install ansible-galaxy
 
 WORKDIR /home/ansible_controller
 
