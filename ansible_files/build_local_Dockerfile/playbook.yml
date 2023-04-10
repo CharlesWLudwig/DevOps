@@ -2,8 +2,7 @@
   remote_user: root
   become: true
 
-  collections:
-    - name: community.docker
+  collections: community.docker
 
   vars:
     container_count: 4
