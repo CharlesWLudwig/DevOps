@@ -10,6 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Install jmespath
+      run: sudo pipx inject ansible-core jmespath
+
+    - name: Run playbook
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: ansible-challenge/ansible_files/playbook.yml
+
     - name: checkout repo
       uses: actions/checkout@v2
     - name: Lint Ansible Playbook
