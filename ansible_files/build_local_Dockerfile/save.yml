@@ -3,7 +3,7 @@
   tasks:
     - name: archive container image as a tarball
       docker_image:
-        name: democontainer:v1.0
+        name: hello-world-ansible:latest
         archive_path: /root/hello_world_container.tar
         source: pull
         state: present

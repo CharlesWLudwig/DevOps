@@ -67,7 +67,7 @@
       docker_container:
         name: hello-devops
         state: started
-        image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+        image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-world-ansible:latest"
         pull: true
         ports:
           - "3000:3000"

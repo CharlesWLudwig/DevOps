@@ -8,7 +8,7 @@
 
     - name: load container from tarball
       docker_image:
-        name: democontainer:v1.0
+        name: hello-world-ansible:latest
         load_path: /root/hello_world_container.tar
         state: present
         source: load
