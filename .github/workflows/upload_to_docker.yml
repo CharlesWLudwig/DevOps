@@ -45,6 +45,15 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
+      -
+        name: Build and push ansible
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./ansible-challenge/ansible_files/build_local_Dockerfile/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world-ansible:latest
+
       # See successful image locally created by Docker
       -
         name: Build local docker image
