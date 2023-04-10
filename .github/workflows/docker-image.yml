@@ -43,18 +43,18 @@ jobs:
         pip install tox
         tox -e py
 
+    - name: Build Dockerfile 
+      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
+
+    - name: Run Dockerfile 
+      run: docker run . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
+
     - name: Setting up Ansible Galaxy Collection
       uses: artis3n/ansible_galaxy_collection@v2.8.3
       with:
         api_key: ${{ secrets.GALAXY_API_KEY }}
         galaxy_config_file: ansible_files/build_local_Dockerfile/galaxy.yml
         publish: false
-
-    - name: Build Dockerfile 
-      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
-
-    - name: Run Dockerfile 
-      run: docker run . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
