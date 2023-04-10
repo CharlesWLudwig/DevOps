@@ -55,6 +55,7 @@
     # Log into Dockerhub and pull down image from other account
     - name: Log into DockerHub
       docker_login:
+        state: present
         username: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}
         password: ${{ secrets.DOCKERHUB_ANSIBLE_TOKEN }}
 
