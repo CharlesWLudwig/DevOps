@@ -3,9 +3,11 @@ namespace: community
 name: docker
 version: 3.5.0
 readme: README.md
+
 authors:
   - Ansible Docker Working Group
 description: Modules and plugins for working with Docker
+
 license:
   - GPL-3.0-or-later
   - Apache-2.0

@@ -45,12 +45,15 @@ jobs:
         pip freeze > capstone_project/hello-world/requirements.txt
         pip install -r capstone_project/hello-world/requirements.txt
 
-    - name: Build Dockerfile 
+      # Setting up ansible Dockerfile build dependencies
+    - name: Build (Ansible Dependencies) Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
-    - name: Run Dockerfile 
+      # Setting up ansible Dockerfile run
+    - name: Run (Ansible Dependencies) Dockerfile 
       run: docker run -dp 3000:3000 load-ansible-dependencies:latest
 
+      # Setting up ansible Marketplace galaxy-collection (for Docker Community modules not present in main ansible modules)
     - name: Setting up Ansible Galaxy Collection
       uses: artis3n/ansible_galaxy_collection@v2.8.3
       with:
@@ -119,7 +122,7 @@ jobs:
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@main
       with:
-        path: ansible_files
+        path: ./
 
   deployAnsible:
     needs: build
