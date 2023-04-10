@@ -4,7 +4,7 @@
   - [Setting up your environment](#setting-up-your-environment)
   - [Warm Up](#warm-up)
   - [Challenges](#challenges)
-    - [Challenge 1 : Your first ansible playbook](#challenge-1--your-first-ansible-playbook)
+    - [Challenge 1 : Your first ansible playbook] (#challenge-1--your-first-ansible-playbook)
     - [Challenge 2: Install apache2 in the target machines](#challenge-2-install-apache2-in-the-target-machines)
     - [Challenge 3: Using Ansible loops](#challenge-3-using-ansible-loops)
     - [Challenge 4: Using Ansible vars](#challenge-4-using-ansible-vars)
