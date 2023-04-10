@@ -52,6 +52,32 @@
       pip:
         name: docker
 
+    # Build local Dockerfile via Ansible installed
+    - name: create build directory
+      file:
+        path: /capstone_project/hello-world/ansible-docker-build
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: copy Dockerfile
+      copy:
+        src: ./Dockerfile
+        dest: /capstone_project/hello-world/ansible-docker-build/Dockerfile
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: build container image
+      docker_image:
+        name: democontainer:v1.0
+        build:
+          path: /capstone_project/hello-world/ansible-docker-build
+          source: build
+        state: present
+
+    # Log into Dockerhub and pull down image from other account
     - name: Log into DockerHub
       docker_login:
         username: ${{ secrets.DOCKERHUB_ANSIBLE_USERNAME }}
