@@ -70,7 +70,7 @@ jobs:
       # replace `main` with any valid ref, or tags like `v6`
       uses: ansible-community/ansible-lint-action@v6.0.2
       with:
-        args: ./.gitHub/workflows/playbook.yml
+        args: ./ansible_files/build_local_Dockerfile/playbook.yml
 
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker
@@ -120,7 +120,7 @@ jobs:
     - name: Run Ansible Playbook
       uses: dawidd6/action-ansible-playbook@v2
       with: 
-        playbook: playbook.yml
+        playbook: ./ansible_files/build_local_Dockerfile/playbook.yml
 
     # See successful image locally created by Docker
     - name: List docker images
