@@ -30,7 +30,7 @@ RUN npm install; npm test; npm run build
 COPY . ./App
 
 # Run the /App folder
-CMD ["node", "./App/src/index.js"] 
+CMD ["node", "./App/src/App.js"] 
 
 # Expose (in Docker) the port to access React app from
 EXPOSE 3000
