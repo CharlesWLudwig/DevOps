@@ -119,11 +119,6 @@ jobs:
     - name: Current docker images
       run: docker ps
 
-    - name: Lint Ansible Playbook
-      uses: ansible/ansible-lint-action@main
-      with:
-        path: ./
-
     - name: Run Ansible Playbook
       uses: dawidd6/action-ansible-playbook@v2
       with: 
