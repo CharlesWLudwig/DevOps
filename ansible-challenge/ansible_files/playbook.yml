@@ -67,3 +67,7 @@
         command: "{{ default_container_command }}"
         state: present
       with_sequence: count={{ container_count }}
+
+    - name: Log out of DockerHub
+      docker_login:
+        state: absent
