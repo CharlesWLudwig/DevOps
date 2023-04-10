@@ -50,6 +50,7 @@ jobs:
         publish: false
 
     - name: Inspect multiple images
+      uses: artis3n/ansible_galaxy_collection@v2.8.3
       docker_image_info:
         name:
           - ./capstone_project/hello-world/Dockerfile
@@ -57,6 +58,7 @@ jobs:
       register: result
 
     - name: Make sure that both images exist locally
+      uses: artis3n/ansible_galaxy_collection@v2.8.3
       assert:
         that:
           - result.images | length == 2
