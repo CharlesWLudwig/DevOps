@@ -28,16 +28,6 @@ jobs:
         # Optional - x64 or x86 architecture, defaults to x64
         architecture: 'x64'
 
-    - name: Display Python version
-      run: python -c "import sys; print(sys.version)"
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip setuptools wheel pip-install-test
-        pip install ruff pytest
-        pip freeze > capstone_project/hello-world/requirements.txt
-        if [ -f capstone_project/hello-world/requirements.txt ]; then pip install -r capstone_project/hello-world/requirements.txt; fi
-
     - name: Lint with ruff
       run: |
         pip install ruff 
@@ -47,17 +37,9 @@ jobs:
         ruff --format=github --target-version=py37 .
       continue-on-error: true
 
-    - name: Install tox and any other packages
-      run: pip install tox
 
-    - name: Run tox
-      # Run tox using the version of Python in `PATH`
-      run: tox -e py
-
-    - name: Install jmespath
-      shell: bash
-      run: |
-        sudo pipx inject ansible-core jmespath
+    - name: Run Dockerfile 
+      run: docker run --file ansible_base/Dockerfile load-ansible-dependencies:latest
 
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
