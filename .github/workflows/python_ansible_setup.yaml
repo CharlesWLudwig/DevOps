@@ -4,7 +4,7 @@ on:
   workflow_run:
     workflows: ["Docker Image CI"]
     types:
-      - success
+      - completed
 
 permissions:
   contents: read
