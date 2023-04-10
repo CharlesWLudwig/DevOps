@@ -5,6 +5,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+  pull:
+    branches: [ "main" ]
 
 # Jobs
 jobs:
