@@ -17,8 +17,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    # When the push is made, setup the node testing environment (to keep large file sizes from node_modules OFF main development computer)
     steps:
       # On checkout, setup Python testing environment with Github branching permissions
       - 
@@ -154,7 +152,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: dawidd6/action-ansible-playbook@v2
-    - uses: ./.github/actions/ansible
       with: 
         playbook: ansible-challenge/ansible_files/playbook.yml
         inventory: localhost
