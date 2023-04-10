@@ -23,7 +23,7 @@ COPY capstone_project/hello-world/package.json ./App
 COPY capstone_project/hello-world/package-lock.json ./App
 
 # Replace file content
-RUN sed -i "s|Hello World!|Hello DevOps! |g" /capstone_project/hello-world/src/App.js
+RUN sed -i "s|Hello World!|Hello DevOps! |g" capstone_project/hello-world/src/App.js
 
 # Verify file changes 
 RUN cat capstone_project/hello-world/src/App.js
