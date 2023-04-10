@@ -29,8 +29,8 @@ RUN npm install; npm test; npm run build
 # Copy all files to temporary App folder
 COPY . ./App
 
-# Expose (in Docker) the port to access React app from
-EXPOSE 3000
-
 # Run the /App folder
 CMD ["node", "./App/src/App.js"] 
+
+# Expose (in Docker) the port to access React app from
+EXPOSE 3000
