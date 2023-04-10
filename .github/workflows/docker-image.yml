@@ -43,6 +43,10 @@ jobs:
         pip install tox
         tox -e py
 
+    - name: Install tarball for Docker / Ansible
+      run: |
+        pip install https://galaxy.ansible.com/download/community-docker-3.4.3.tar.gz
+
     - name: Build Dockerfile 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
