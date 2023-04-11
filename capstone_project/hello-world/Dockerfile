@@ -16,9 +16,9 @@ RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 WORKDIR /data/app
 
 # Copy package.json and package-lock.json files
-COPY /data/app/capstone_project/hello-world/package.json ./App
+# COPY /data/app/capstone_project/hello-world/package.json ./App
 
-COPY /data/app/capstone_project/hello-world/package-lock.json ./App
+# COPY /data/app/capstone_project/hello-world/package-lock.json ./App
 
 # Move to git repo section for source files to NPM against
 WORKDIR /data/app/capstone_project/hello-world/src
