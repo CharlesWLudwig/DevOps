@@ -2,7 +2,7 @@
 
 service ssh start
 
-cd ansible_files/build_local_Dockerfile
+cd ansible_files
 
 ansible-galaxy collections install community.docker
 
