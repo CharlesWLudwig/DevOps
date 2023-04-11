@@ -100,7 +100,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./ansible_files/Dockerfile
+        file: ./capstone_project/hello-devops/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
 
@@ -109,7 +109,7 @@ jobs:
       run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
 
     - name: Build local 'Hello DevOps!' dockerfile
-      run: docker build --file ansible_files/Dockerfile -t hello-devops:latest .
+      run: docker build --file capstone_project/hello-devops/Dockerfile -t hello-devops:latest .
 
     # See successful image locally created by Docker
     - name: List docker images
