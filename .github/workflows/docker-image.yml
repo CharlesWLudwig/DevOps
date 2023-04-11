@@ -84,7 +84,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./ansible_dockerfile/Dockerfile
+        file: ./ansible_base/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-action:latest
 
