@@ -23,9 +23,6 @@ RUN sed -i "s|Hello World!|Hello DevOps! |g" App.js
 # Verify file changes 
 RUN cat App.js
 
-# Move to git repo section for source files to NPM against
-WORKDIR /data/app/capstone_project/hello-world/src
-
 # Per capstone project instructions, 'npm install' and 'npm test' and 'npm run build' before Dockerfile packaging
 RUN npm install; npm test; npm run build
 
