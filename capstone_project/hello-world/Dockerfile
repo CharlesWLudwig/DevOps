@@ -28,5 +28,4 @@ RUN npm install; npm test; npm run build
 EXPOSE 3000
 
 # Run the /App folder
-# CMD ["node", "./App.js"] 
 CMD ["npm", "start"]
