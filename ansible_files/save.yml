@@ -4,11 +4,11 @@
     - name: archive container image as a tarball
       docker_image:
         name: hello-world-ansible:latest
-        archive_path: /root/hello_world_container.tar
+        archive_path: /root/ansible_files/hello_world_container.tar
         source: pull
         state: present
     - name: fetch archived image
       fetch:
-        src: /root/hello_world_container.tar
+        src: /root/ansible_files/hello_world_container.tar
         dest: ./hello_world_container.tar
         flat: true

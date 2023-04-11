@@ -51,7 +51,7 @@
 
     - name: create build directory
       file:
-        path: /root/local-dockerfile
+        path: /root/ansible_files
         state: directory
         owner: root
         group: root
@@ -60,7 +60,7 @@
     - name: copy Dockerfile
       copy:
         src: ./Dockerfile
-        dest: /root/local-dockerfile/Dockerfile
+        dest: /root/ansible_files/Dockerfile
         owner: root
         group: root
         mode: '0644'
@@ -69,6 +69,6 @@
       docker_image:
         name: hello-world-ansible:latest
         build:
-          path: /root/local-dockerfile
+          path: /root/ansible_files
           source: build
         state: present
