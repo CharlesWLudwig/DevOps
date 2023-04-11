@@ -3,12 +3,12 @@
   tasks:
     - name: archive container image as a tarball
       docker_image:
-        name: hello-world-ansible:latest
-        archive_path: /root/ansible_files/hello_world_container.tar
+        name: democontainer:v1.0
+        archive_path: /root/democontainer_v1_0.tar
         source: pull
         state: present
     - name: fetch archived image
       fetch:
-        src: /root/ansible_files/hello_world_container.tar
-        dest: ./hello_world_container.tar
+        src: /root/democontainer_v1_0.tar
+        dest: ./democontainer_v1_0.tar
         flat: true

@@ -49,7 +49,7 @@ jobs:
     - name: Start up ansible community modules
       shell: bash
       run: |
-        git update-index --chmod=+x ./ansible_dockerfile/startup.sh 
+        git update-index --chmod=+x ./startup.sh 
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE 
@@ -88,7 +88,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-action:latest
 
-    - name: 2. CONTAINERIZE ANSIBLE
+    - name: Containerize Hello-World for Docker Upload
       uses: docker/build-push-action@v4
       with:
         context: .
@@ -100,6 +100,6 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./ansible_dockerfile/Dockerfile
+        file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest

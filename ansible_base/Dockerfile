@@ -19,7 +19,7 @@ RUN add-apt-repository --yes --update ppa:ansible/ansible \
      
 WORKDIR /home/ansible_controller
 
-COPY ansible_dockerfile/startup.sh .
+COPY startup.sh .
 
 RUN useradd -rm -d /home/ansible_controller -s /bin/bash -g root -G sudo -u 1001 ansible_controller
 RUN echo ansible_controller:12345 | chpasswd
