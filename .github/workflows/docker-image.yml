@@ -45,8 +45,14 @@ jobs:
         pip freeze > capstone_project/hello-world/requirements.txt
         pip install -r capstone_project/hello-world/requirements.txt
 
+      # Setting up ansible shell dependencies
+    - name: Start up ansible community modules
+      shell: bash
+      run: |
+        git update-index --chmod=+x ./ansible_dockerfile/startup.sh 
+
       # Setting up ansible Dockerfile build dependencies
-    - name: 3. CREATE A CI PIPELINE (BUILD / LOAD / SAVE PLAYBOOK)
+    - name: 3. CREATE A CI PIPELINE 
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible Dockerfile run
@@ -59,12 +65,6 @@ jobs:
       with:
         api_key: ${{ secrets.GALAXY_API_KEY }}
         publish: false
-
-      # Setting up ansible shell dependencies
-    - name: Start up ansible community modules
-      shell: bash
-      run: |
-        git update-index --chmod=+x ./ansible_dockerfile/startup.sh 
 
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker
@@ -103,18 +103,3 @@ jobs:
         file: ./ansible_dockerfile/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
-
-    # See successful image locally created by Docker
-    - name: Build local 'Hello World!' dockerfile
-      run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
-
-    - name: Build local 'Hello DevOps!' dockerfile
-      run: docker build --file ansible_dockerfile/Dockerfile -t hello-devops:latest .
-
-    # See successful image locally created by Docker
-    - name: List docker images
-      run: docker images -a
-
-    # See current image locally created by Docker
-    - name: Current docker images
-      run: docker ps
