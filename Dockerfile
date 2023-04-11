@@ -15,15 +15,13 @@ RUN apt-get update  -y \
     stress \
     curl \
     vim \
+    npm \
+    git \
+    openssh \
     software-properties-common
 
 RUN add-apt-repository --yes --update ppa:ansible/ansible \
     && apt-get install -y ansible ansible-core
-
-# Add in dependencies to download git rep / install npm
-RUN apk add --no-cache git
-RUN apk add --no-cache npm
-RUN apk add --no-cache openssh
 
 # Create temporary directory
 WORKDIR /data
