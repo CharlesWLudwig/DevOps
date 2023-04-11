@@ -50,7 +50,8 @@ WORKDIR /data/app/capstone_project/hello-world/src
 RUN npm install; npm test; npm run build
 
 # Run the /App folder
-CMD ["node", "./App/src/App.js"] 
+CMD ["node", "./App.js"] 
+# CMD ["npm", "start"]
 
 # Expose (in Docker) the port to access React app from
 EXPOSE 3000
