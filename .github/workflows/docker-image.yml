@@ -121,7 +121,7 @@ jobs:
 
     # Run current image locally created by Docker
     - name: Run docker image -p 4000:4000 --name hello-world
-      run: docker run -p3000:3000 --name hello-devops
+      run: docker run -p 3000:3000 --name hello-devops
 
     # See current image locally created by Docker
     - name: Current docker images
