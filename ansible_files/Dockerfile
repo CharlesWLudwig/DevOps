@@ -15,17 +15,22 @@ WORKDIR /data
 RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
 # Access temporary subfolder
+WORKDIR /data/app/capstone_project/hello-world
+# Replace file content (for the client-facing website)
+RUN sed -i "s|hello-world|hello-devops|g" package.json
+# Verify file changes to App.js
+RUN cat package.json
+
+# Access temporary subfolder
 WORKDIR /data/app/capstone_project/hello-world/src
 
 # Replace file content (for the client-facing website)
 RUN sed -i "s|Hello World!|Hello DevOps!|g" App.js
-
 # Verify file changes to App.js
 RUN cat App.js
 
 # Replace file content of App.test.js (to pass the tests)
 RUN sed -i "s|Hello World!|Hello DevOps!|g" App.test.js
-
 # Verify file changes to App.test.js
 RUN cat App.test.js
 
