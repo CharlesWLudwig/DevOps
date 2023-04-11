@@ -1,0 +1,14 @@
+- hosts: target2
+  gather_facts: no
+  tasks:
+    - name: copy tarball to host
+      copy:
+        src: ./hello_world_container.tar
+        dest: /root/ansible_files/hello_world_container.tar
+
+    - name: load container from tarball
+      docker_image:
+        name: hello-world-ansible:latest
+        load_path: /root/ansible_files/hello_world_container.tar
+        state: present
+        source: load
