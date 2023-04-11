@@ -49,19 +49,10 @@ jobs:
     - name: Start up ansible community modules
       shell: bash
       run: |
-        git update-index --chmod=+x ./ansible_base/startup.sh 
         git update-index --chmod=+x ./startup.sh 
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE 
-      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
-
-      # Setting up ansible Dockerfile run
-    - name: Run (Ansible Dependencies) Dockerfile 
-      run: docker run -dp 5000:5000 load-ansible-dependencies:latest
-
-      # Setting up ansible Marketplace galaxy-collection (for Docker Community modules not present in main ansible modules)
-    - name: Setting up Ansible Galaxy Collection
       uses: artis3n/ansible_galaxy_collection@v2.8.3
       with:
         api_key: ${{ secrets.GALAXY_API_KEY }}
@@ -80,14 +71,6 @@ jobs:
           
     - name: Setting up Docker Build 
       uses: docker/setup-buildx-action@v2
-
-    - name: 2. CONTAINERIZE THE APPLICATION
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./ansible_base/Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-action:latest
 
     - name: Containerize Hello-World for Docker Upload
       uses: docker/build-push-action@v4
