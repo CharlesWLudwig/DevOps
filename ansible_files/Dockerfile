@@ -37,6 +37,9 @@ RUN cat App.test.js
 # Per capstone project instructions, 'npm install' and 'npm test' and 'npm run build' before Dockerfile packaging
 RUN npm install; npm test; npm run build
 
+# Access temporary subfolder
+WORKDIR /data/app/capstone_project/hello-world
+
 # Copy all files to temporary App folder
 COPY . ./App
 
