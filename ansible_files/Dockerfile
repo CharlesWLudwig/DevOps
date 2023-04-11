@@ -15,18 +15,13 @@ WORKDIR /data
 RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
 # Access temporary subfolder
-WORKDIR /data/app
-
-# Copy package.json and package-lock.json files
-COPY capstone_project/hello-world/package.json ./App
-
-COPY capstone_project/hello-world/package-lock.json ./App
+WORKDIR /data/app/capstone_project/hello-world/src
 
 # Replace file content
-RUN sed -i "s|Hello World!|Hello DevOps! |g" capstone_project/hello-world/src/App.js
+RUN sed -i "s|Hello World!|Hello DevOps! |g" App.js
 
 # Verify file changes 
-RUN cat capstone_project/hello-world/src/App.js
+RUN cat App.js
 
 # Move to git repo section for source files to NPM against
 WORKDIR /data/app/capstone_project/hello-world/src
