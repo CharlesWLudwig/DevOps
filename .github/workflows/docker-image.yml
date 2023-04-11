@@ -115,14 +115,6 @@ jobs:
     - name: List docker images
       run: docker images -a
 
-    # Run current image locally created by Docker
-    - name: Run docker image hello-devops
-      run: docker run -dp 3000:3000 --name hello-devops hello-devops:latest
-
-    # Run current image locally created by Docker
-    - name: Run docker image hello-world
-      run: docker run -dp 4000:4000 --name hello-world hello-world:latest
-
     # See current image locally created by Docker
     - name: Current docker images
       run: docker ps
