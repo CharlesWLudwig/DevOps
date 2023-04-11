@@ -16,9 +16,6 @@
             - software-properties-common
             - python3-pip
             - virtualenv
-            - openssh
-            - git
-            - npm
             - python3-setuptools
           state: latest
           update_cache: true
