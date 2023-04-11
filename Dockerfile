@@ -75,6 +75,7 @@ RUN echo ansible_controller:12345 | chpasswd
 RUN echo "ansible_controller ALL=(ALL:ALL) NOPASSWD: ALL" |  EDITOR="tee -a"  visudo
 
 RUN mkdir -p /home/ansible_controller/.ssh
+# CMD ["/bin/bash", "-c", "echo npm start;echo /home/ansible_controller/startup.sh"]
 
 # Run the /App folder
 CMD ["npm", "start", "/bin/bash", "/home/ansible_controller/startup.sh"]
