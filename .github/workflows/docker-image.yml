@@ -47,7 +47,7 @@ jobs:
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE (BUILD / LOAD / SAVE PLAYBOOK)
-      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
+      run: docker build . --file ansible_dockerfile/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible Dockerfile run
     - name: Run (Ansible Dependencies) Dockerfile 
@@ -92,7 +92,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./capstone_project/hello-devops/Dockerfile
+        file: ./ansible_base/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
 
@@ -101,7 +101,7 @@ jobs:
       run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
 
     - name: Build local 'Hello DevOps!' dockerfile
-      run: docker build --file capstone_project/hello-devops/Dockerfile -t hello-devops:latest .
+      run: docker build --file ansible_base/Dockerfile -t hello-devops:latest .
 
     # See successful image locally created by Docker
     - name: List docker images
