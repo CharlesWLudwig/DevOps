@@ -1,7 +1,7 @@
 ### THIS IS THE DOCKERFILE TO ANSIBLE-CHANGE
 
 # Base DOcker OS
-FROM node:alpine
+FROM node:ubuntu
 
 RUN apt-get update  -y \
     && apt-get upgrade -y \ 

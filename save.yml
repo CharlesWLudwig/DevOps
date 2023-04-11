@@ -4,11 +4,11 @@
     - name: archive container image as a tarball
       docker_image:
         name: democontainer:v1.0
-        archive_path: /root/democontainer_v1_0.tar
+        archive_path: /root/hello_devops_container.tar
         source: pull
         state: present
     - name: fetch archived image
       fetch:
-        src: /root/democontainer_v1_0.tar
-        dest: ./democontainer_v1_0.tar
+        src: /root/hello_devops_container.tar
+        dest: ./hello_devops_container.tar
         flat: true
