@@ -49,6 +49,7 @@ jobs:
     - name: Start up ansible community modules
       shell: bash
       run: |
+        git update-index --chmod=+x ./ansible_base/startup.sh 
         git update-index --chmod=+x ./startup.sh 
 
       # Setting up ansible Dockerfile build dependencies
