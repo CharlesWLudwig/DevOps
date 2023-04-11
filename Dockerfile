@@ -15,7 +15,6 @@ RUN apt-get update  -y \
     stress \
     curl \
     vim \
-    npm \
     git \
     openssh \
     software-properties-common
