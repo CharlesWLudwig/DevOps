@@ -18,7 +18,7 @@ RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 WORKDIR /data/app/capstone_project/hello-world/src
 
 # Replace file content
-RUN sed -i "s|Hello World!|Hello DevOps! |g" App.js
+RUN sed -i "s|Hello World!|Hello DevOps!|g" App.js
 
 # Verify file changes 
 RUN cat App.js
