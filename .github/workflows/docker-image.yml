@@ -109,7 +109,7 @@ jobs:
       run: docker build --file capstone_project/hello-world/Dockerfile -t hello-world:latest .
 
     - name: Build local 'Hello DevOps!' dockerfile
-      run: docker build --file ansible_files/Dockerfile -t hello-world:latest .
+      run: docker build --file ansible_files/Dockerfile -t hello-devops:latest .
 
     # See successful image locally created by Docker
     - name: List docker images
