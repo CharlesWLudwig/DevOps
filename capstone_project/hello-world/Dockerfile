@@ -24,9 +24,9 @@ WORKDIR /data/app/capstone_project/hello-world/src
 # Per capstone project instructions, 'npm install' and 'npm test' and 'npm run build' before Dockerfile packaging
 RUN npm install; npm test; npm run build
 
-# Run the /App folder
-CMD ["node", "./App.js"] 
-# CMD ["npm", "start"]
-
 # Expose (in Docker) the port to access React app from
 EXPOSE 3000
+
+# Run the /App folder
+# CMD ["node", "./App.js"] 
+CMD ["npm", "start"]
