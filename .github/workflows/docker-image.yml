@@ -46,7 +46,7 @@ jobs:
         pip install -r capstone_project/hello-world/requirements.txt
 
       # Setting up ansible Dockerfile build dependencies
-    - name: Build (Ansible Dependencies) Dockerfile 
+    - name: 3. CREATE A CI PIPELINE (BUILD / LOAD / SAVE PLAYBOOK)
       run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible Dockerfile run
@@ -87,14 +87,6 @@ jobs:
         file: ./capstone_project/hello-world/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
-
-    - name: 3. CREATE A CI PIPELINE (BUILD / LOAD / SAVE PLAYBOOK)
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./ansible_base/Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-base:latest
 
     - name: 4. UPDATE 'HELLO WORLD!' APP TO 'HELLO DEVOPS!'
       uses: docker/build-push-action@v4
