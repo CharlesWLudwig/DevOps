@@ -47,7 +47,7 @@ jobs:
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE (BUILD / LOAD / SAVE PLAYBOOK)
-      run: docker build . --file ansible_dockerfile/Dockerfile --tag load-ansible-dependencies:latest
+      run: docker build . --file ansible_base/Dockerfile --tag load-ansible-dependencies:latest
 
       # Setting up ansible Dockerfile run
     - name: Run (Ansible Dependencies) Dockerfile 
