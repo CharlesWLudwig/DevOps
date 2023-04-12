@@ -97,6 +97,7 @@ jobs:
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
 
   build_ansible:
+    needs: build
     runs-on: ubuntu-latest
     steps:
     - name: checkout repo
@@ -104,7 +105,8 @@ jobs:
     - name: Lint Ansible Playbook
       uses: ansible/ansible-lint-action@main
       with:
-        targets: ""
+        path: ./
+
   deployAnsible:
     needs: build_ansible
     runs-on: ubuntu-latest
