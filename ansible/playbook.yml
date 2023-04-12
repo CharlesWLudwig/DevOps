@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  become: yes
+  become: true
   gather_facts: no
   tasks:
       - name: Install aptitude
@@ -48,48 +48,16 @@
         pip:
           name: docker
 
-      - name: create build directory
-        file:
-          path: /root/demo-dockerfile
-          state: directory
-          owner: root
-          group: root
-          mode: '0755'
-      - name: copy Dockerfile
-        copy:
-          src: ./Dockerfile
-          dest: /root/demo-dockerfile/Dockerfile
-          owner: root
-          group: root
-          mode: '0644'
-      - name: build container image
-        docker_image:
-          name: hello_devops_container:latest
-          build:
-            path: /root/demo-dockerfile
-            source: build
-          state: present
-
-      - name: archive container image as a tarball
-        docker_image:
-          name: democontainer:v1.0
-          archive_path: /root/hello_devops_container.tar
-          source: pull
-          state: present
-      - name: fetch archived image
-        fetch:
-          src: /root/hello_devops_container.tar
-          dest: ./hello_devops_container.tar
-          flat: true
-
-      - name: copy tarball to host
-        copy:
-          src: ./hello_devops_container.tar
-          dest: /root/hello_devops_container.tar
-
-      - name: load container from tarball
-        docker_image:
-          name: democontainer:v1.0
-          load_path: /root/hello_devops_container.tar
-          state: present
-          source: load
+      - name: log into docker hub registry
+        docker_login:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: ensure a container is running
+        docker_container:
+          name: hello-devops
+          state: started
+          image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+          pull: true
+          ports:
+            - "3000:3000"
