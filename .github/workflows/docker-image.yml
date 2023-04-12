@@ -69,9 +69,8 @@ jobs:
         ansible-galaxy collection install community.docker
 
     - name: Deploy via Ansible
-      working-directory: ./.github/actions/ansible
+      working-directory: ./ansible
       run: |
-        cd ansible
         ansible-playbook -i inventory.ini build.yml
         ansible-playbook -i inventory.ini save.yml 
         ansible-playbook -i inventory.ini load.yml 
