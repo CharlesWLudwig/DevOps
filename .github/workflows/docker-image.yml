@@ -13,6 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      ANSIBLE_HOST_KEY_CHECKING: False
 
     steps:
     - name: 1. SETUP YOUR DEVELOPMENT ENVIRONMENT
@@ -25,31 +27,28 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        # Optional - x64 or x86 architecture, defaults to x64
         architecture: 'x64'
 
-    - name: Lint with ruff
+    - name: Install Python Dependencies
       run: |
-        pip install --upgrade pip setuptools wheel pip-install-test 
-        pip install ruff
-        # stop the build if there are Python syntax errors or undefined names
+        python3 -m venv env
+        source env/bin/activate
+        pip install --upgrade pip setuptools wheel pip-install-test tox ruff
         ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 .
-        # default set of ruff rules with GitHub Annotations
         ruff --format=github --target-version=py37 .
-      continue-on-error: true
-
-    - name: Install other modules as needed
-      run: |
-        pip install tox
         tox -e py
         pip freeze > capstone_project/hello-world/requirements.txt
         pip install -r capstone_project/hello-world/requirements.txt
+      continue-on-error: true
 
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
       shell: bash
       run: |
         git update-index --chmod=+x ./startup.sh 
+        mkdir ~/.ssh
+        echo "${{secrets.SSH_KEY}}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE 
@@ -58,6 +57,15 @@ jobs:
         api_key: ${{ secrets.GALAXY_API_KEY }}
         publish: false
 
+    - name: Deploy via ansible
+      working-directory: ./ansible
+      run: |
+        ansible-galaxy collections install community.docker
+        ansible-playbook -i inventory.ini .build.yml
+        ansible-playbook -i inventory.ini .save.yml
+        ansible-playbook -i inventory.ini .load.yml 
+
+    # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v1      
@@ -92,7 +100,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./Dockerfile
+        file: ./ansible/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest
 
