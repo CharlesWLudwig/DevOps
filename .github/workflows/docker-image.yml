@@ -41,7 +41,12 @@ jobs:
     # Set up Docker for GitHub Actions environment
     - name: Build the Docker image
       run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
-  
+
+    # ansible-playbook github_deploy.yml -i hosts_github 
+    # Set up Docker for GitHub Actions environment
+    - name: Run the Docker image
+      run: docker run -p 3000:3000 ansible-actions:latest
+
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
       shell: bash
@@ -84,14 +89,6 @@ jobs:
         file: ./capstone_project/hello-world/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
-
-    - name: Containerize Ansible Dockerfile Upload
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./.github/actions/ansible/Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-actions:latest
 
     - name: 4. UPDATE 'HELLO WORLD!' APP TO 'HELLO DEVOPS!'
       uses: docker/build-push-action@v4
