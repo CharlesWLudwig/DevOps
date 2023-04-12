@@ -15,7 +15,8 @@ RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 # Move to git repo section for source files to NPM against
 WORKDIR /data/app/capstone_project/hello-world
 
-<!-- {mark} ANSIBLE MANAGED BLOCK --><--!>
+<!--START_SECTION:ansible_updates-->
+<!--END_SECTION:ansible_updates-->
 
 # Copy all files to temporary App folder
 COPY . ./App

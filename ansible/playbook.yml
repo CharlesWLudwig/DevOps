@@ -51,7 +51,7 @@
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
           path: /capstone_project/hello-world/Dockerfile
-          marker: "<!-- {mark} ANSIBLE MANAGED BLOCK -->"
+          marker: "<!--START_SECTION:ansible_updates-->"
           block: |           
             # Replace file content (for the client-facing website)
             RUN sed -i "s|hello-world|hello-devops|g" package.json
