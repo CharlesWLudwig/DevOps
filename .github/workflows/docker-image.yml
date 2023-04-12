@@ -80,6 +80,14 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
 
+    - name: Containerize Ansible Dockerfile Upload
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./.github/actions/ansible/Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/ansible-actions:latest
+
     - name: 4. UPDATE 'HELLO WORLD!' APP TO 'HELLO DEVOPS!'
       uses: docker/build-push-action@v4
       with:
