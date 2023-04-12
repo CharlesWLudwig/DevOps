@@ -63,10 +63,15 @@ jobs:
         api_key: ${{ secrets.GALAXY_API_KEY }}
         publish: false
 
-    - name: Deploy via ansible
+    - name: Install ansible collection
       working-directory: ./ansible
       run: |
         ansible-galaxy collection install community.docker
+
+    - name: Deploy via Ansible
+      working-directory: ./.github/actions/ansible
+      run: |
+        cd ansible
         ansible-playbook -i inventory.ini build.yml
         ansible-playbook -i inventory.ini save.yml 
         ansible-playbook -i inventory.ini load.yml 
