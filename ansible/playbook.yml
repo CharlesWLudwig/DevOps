@@ -70,7 +70,6 @@
           source: build
           build:
             path: /root/devops-dockerfile
-          force: yes
           state: present
         tags: latest
 
