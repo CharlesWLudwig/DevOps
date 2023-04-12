@@ -1,24 +1,10 @@
-### THIS IS THE DOCKERFILE TO ANSIBLE-CHANGE
+# Base DOcker OS
+FROM node:alpine
 
-# Base Docker OS
-FROM ubuntu
-
-RUN apt-get update  -y \
-    && apt-get upgrade -y \ 
-    && apt-get install -y \
-    pipx \
-    ssh \
-    docker \
-    sshpass \
-    sudo \
-    apt-utils \
-    stress \
-    curl \
-    vim \
-    software-properties-common
-
-RUN add-apt-repository --yes --update ppa:ansible/ansible \
-    && apt-get install -y ansible ansible-core git npm
+# Add in dependencies to download git rep / install npm
+RUN apk add --no-cache git
+RUN apk add --no-cache npm
+RUN apk add --no-cache openssh
 
 # Create temporary directory
 WORKDIR /data
@@ -61,16 +47,5 @@ RUN npm install; npm test; npm run build
 # Expose (in Docker) the port to access React app from
 EXPOSE 3000
 
-WORKDIR /home/ansible_controller
-
-COPY startup.sh .
-
-RUN useradd -rm -d /home/ansible_controller -s /bin/bash -g root -G sudo -u 1001 ansible_controller
-RUN echo ansible_controller:12345 | chpasswd
-RUN echo "ansible_controller ALL=(ALL:ALL) NOPASSWD: ALL" |  EDITOR="tee -a"  visudo
-
-RUN mkdir -p /home/ansible_controller/.ssh
-# CMD ["/bin/bash", "-c", "echo npm start;echo /home/ansible_controller/startup.sh"]
-
 # Run the /App folder
-CMD ["npm", "start", "/bin/bash", "/home/ansible_controller/startup.sh"]
+CMD ["npm", "start"]
