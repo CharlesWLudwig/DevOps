@@ -39,11 +39,6 @@ jobs:
 
     # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
-    - name: Set up Docker
-      uses: crazy-max/ghaction-setup-docker@v1      
-
-    # ansible-playbook github_deploy.yml -i hosts_github 
-    # Set up Docker for GitHub Actions environment
     - name: Build the Docker image
       run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
   
@@ -77,6 +72,10 @@ jobs:
       working-directory: ./ansible
       run: |
         ansible-playbook -i inventory.ini playbook.yml
+
+    # Set up Docker for GitHub Actions environment
+    - name: Set up Docker
+      uses: crazy-max/ghaction-setup-docker@v1    
 
     # Log into Docker Hub (for Docker file upload)
     - name: Login to Docker Hub

@@ -48,12 +48,3 @@
       - name: Install Docker Module for Python
         pip:
           name: docker
-
-      - name: ensure a container is running
-        docker_container:
-          name: hello-devops
-          state: started
-          image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
-          pull: true
-          ports:
-            - "3000:3000"
