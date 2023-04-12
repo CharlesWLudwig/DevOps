@@ -1,4 +1,4 @@
-FROM  charleswludwig/ansible-in-containers
+FROM  charleswludwig/ansible-actions
 
 COPY ./entrypoint.sh /entrypoint.sh
 
