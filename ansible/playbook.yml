@@ -88,14 +88,21 @@
           name: democontainer:v1.0
           load_path: /root/democontainer_v1_0.tar
           state: present
-          source: load
+          source: local
           
+      - name: Tag and push to docker hub
+        community.docker.docker_image:
+          name: democontainer:latest
+          repository: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+          push: true
+          source: local
+
       - name: ensure a container is running
         docker_container:
           name: democontainer:latest
           state: started
           image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
-          push: true
+          pull: true
           ports:
             - "3000:3000"
 
