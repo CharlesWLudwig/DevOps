@@ -45,7 +45,7 @@ jobs:
     # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
     - name: Run the Docker image
-      run: docker run -p 3000:3000 ansible-actions:latest
+      run: docker run -dp 3000:3000 ansible-actions:latest
 
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
