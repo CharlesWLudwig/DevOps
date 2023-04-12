@@ -19,8 +19,6 @@
             - python3-pip
             - virtualenv
             - python3-setuptools
-            - ansible
-            - ansible-core
           state: latest
           update_cache: true
 
