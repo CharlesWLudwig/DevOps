@@ -71,9 +71,7 @@ jobs:
     - name: Deploy via Ansible
       working-directory: ./ansible
       run: |
-        ansible-playbook -i inventory.ini build.yml
-        ansible-playbook -i inventory.ini save.yml 
-        ansible-playbook -i inventory.ini load.yml 
+        ansible-playbook -i inventory.ini playbook.yml
 
     # Log into Docker Hub (for Docker file upload)
     - name: Login to Docker Hub
