@@ -67,8 +67,8 @@ jobs:
       working-directory: ./ansible
       run: |
         ansible-galaxy collection install community.docker
-        ansible-playbook -i inventory.ini build.yml
-        ansible-playbook -i inventory.ini save.yml
+        ansible-playbook -i inventory.ini build.yml target1
+        ansible-playbook -i inventory.ini save.yml 
         ansible-playbook -i inventory.ini load.yml 
 
     # Log into Docker Hub (for Docker file upload)
