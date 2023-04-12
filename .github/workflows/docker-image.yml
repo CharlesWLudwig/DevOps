@@ -46,7 +46,7 @@ jobs:
     # Set up Docker for GitHub Actions environment
     - name: Build the Docker image
       run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
-
+  
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
       shell: bash
