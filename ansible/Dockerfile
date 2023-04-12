@@ -14,6 +14,7 @@ RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
 # Access temporary subfolder
 WORKDIR /data/app/capstone_project/hello-world
+
 # Replace file content (for the client-facing website)
 RUN sed -i "s|hello-world|hello-devops|g" package.json
 # Verify file changes to App.js
@@ -31,9 +32,6 @@ RUN cat App.js
 RUN sed -i "s|Hello World!|Hello DevOps!|g" App.test.js
 # Verify file changes to App.test.js
 RUN cat App.test.js
-
-# Move to git repo section for source files to NPM against
-WORKDIR /data/app/capstone_project/hello-world
 
 # Copy all files to temporary App folder
 COPY . ./App
