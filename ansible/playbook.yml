@@ -50,7 +50,7 @@
 
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
-          path: capstone_project/hello-world/Dockerfile
+          path: /Dockerfile
           marker: "<!--START_SECTION:ansible_updates-->"
           block: |           
             # Replace file content (for the client-facing website)
