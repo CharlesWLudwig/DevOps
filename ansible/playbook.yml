@@ -48,6 +48,11 @@
         ansible.builtin.pip:
           name: docker
 
+      - name: log into docker hub registry
+        docker_login:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: create build directory
         file:
           path: /root/devops-dockerfile
@@ -66,7 +71,7 @@
 
       - name: build container image
         docker_image:
-          name: democontainer:v1.0
+          name: democontainer:latest
           source: build
           build:
             path: /root/devops-dockerfile
@@ -85,6 +90,15 @@
           state: present
           source: load
           
+      - name: ensure a container is running
+        docker_container:
+          name: democontainer:latest
+          state: started
+          image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+          push: true
+          ports:
+            - "3000:3000"
+
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
           path: ./Dockerfile
