@@ -49,12 +49,12 @@
           name: docker
 
       - name: log into docker hub registry
-        docker_login:
+        community.docker.docker_login:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: ensure a container is running
-        docker_container:
+        community.docker.docker_container:
           name: hello-devops
           state: started
           image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
