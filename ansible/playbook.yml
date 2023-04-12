@@ -22,9 +22,6 @@
           state: latest
           update_cache: true
 
-      - name: Run ansible command to install docker.collection
-        ansible.builtin.shell: ansible-galaxy collection install community.docker
-        
       - name: Add Docker GPG apt Key
         ansible.builtin.apt_key:
           url: https://download.docker.com/linux/ubuntu/gpg
