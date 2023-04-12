@@ -1,4 +1,5 @@
-- hosts: target1
+---
+- hosts: all
   gather_facts: no
   tasks:
     - name: archive container image as a tarball

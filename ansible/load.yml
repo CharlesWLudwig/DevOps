@@ -1,4 +1,5 @@
-- hosts: target2
+---
+- hosts: all
   gather_facts: no
   tasks:
     - name: copy tarball to host
