@@ -19,10 +19,14 @@
             - python3-pip
             - virtualenv
             - python3-setuptools
-            - ansible-galaxy collection
+            - ansible
+            - ansible-core
           state: latest
           update_cache: true
 
+      - name: Run ansible command to install docker.collection
+        ansible.builtin.shell: ansible-galaxy collection install community.docker
+        
       - name: Add Docker GPG apt Key
         apt_key:
           url: https://download.docker.com/linux/ubuntu/gpg
