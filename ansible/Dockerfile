@@ -12,11 +12,26 @@ WORKDIR /data
 # Clone git repo and save to temporary directory subfolder
 RUN git clone https://github.com/itjuana-bootcamp/DevOps.git /data/app
 
-# Move to git repo section for source files to NPM against
+# Access temporary subfolder
 WORKDIR /data/app/capstone_project/hello-world
 
-<!--START_SECTION:ansible_updates-->
-<!--END_SECTION:ansible_updates-->
+# Replace file content (for the client-facing website)
+RUN sed -i "s|hello-world|hello-devops|g" package.json
+# Verify file changes to App.js
+RUN cat package.json
+
+# Access temporary subfolder
+WORKDIR /data/app/capstone_project/hello-world/src
+
+# Replace file content (for the client-facing website)
+RUN sed -i "s|Hello World!|Hello DevOps!|g" App.js
+# Verify file changes to App.js
+RUN cat App.js
+
+# Replace file content of App.test.js (to pass the tests)
+RUN sed -i "s|Hello World!|Hello DevOps!|g" App.test.js
+# Verify file changes to App.test.js
+RUN cat App.test.js
 
 # Copy all files to temporary App folder
 COPY . ./App
