@@ -1,4 +1,4 @@
-- hosts: target1
+- hosts: all
   gather_facts: no
   tasks:
       - name: Install aptitude
