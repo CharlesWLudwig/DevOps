@@ -43,7 +43,7 @@ jobs:
     - name: Start up ansible community modules
       shell: bash
       run: |
-        git update-index --chmod=+x ./startup.sh 
+        git update-index --chmod=+x ./.github/actions/ansible/startup.sh 
         mkdir ~/.ssh
         echo "${{secrets.SSH_KEY}}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
