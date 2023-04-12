@@ -31,8 +31,6 @@ jobs:
 
     - name: Install Python Dependencies
       run: |
-        python3 -m venv env
-        source env/bin/activate
         pip install --upgrade pip setuptools wheel pip-install-test tox
         tox -e py
         pip freeze > capstone_project/hello-world/requirements.txt
