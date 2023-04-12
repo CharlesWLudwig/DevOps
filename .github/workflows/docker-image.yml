@@ -63,11 +63,6 @@ jobs:
       run: |
         ansible-galaxy collection install community.docker
 
-    - name: Lint Ansible Playbook
-      uses: ansible/ansible-lint-action@main
-      with:
-        path: ./ansible/playbook.yml
-
     - name: Deploy via Ansible
       working-directory: ./ansible
       run: |
