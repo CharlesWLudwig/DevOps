@@ -59,9 +59,9 @@ jobs:
       working-directory: ./ansible
       run: |
         ansible-galaxy collections install community.docker
-        ansible-playbook -i inventory.ini .build.yml
-        ansible-playbook -i inventory.ini .save.yml
-        ansible-playbook -i inventory.ini .load.yml 
+        ansible-playbook -i inventory.ini build.yml
+        ansible-playbook -i inventory.ini save.yml
+        ansible-playbook -i inventory.ini load.yml 
 
     # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
