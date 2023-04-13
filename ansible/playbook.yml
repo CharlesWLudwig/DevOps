@@ -84,7 +84,7 @@
           archive_path: /root/democontainer_v1_0.tar
           source: pull
           state: present
-          
+
       - name: fetch archived image
         fetch:
           src: /root/democontainer_v1_0.tar
@@ -105,14 +105,14 @@
           
       - name: Tag and push to docker hub
         community.docker.docker_image:
-          name: democontainer:latest
+          name: democontainer
           repository: "{{ dockerhub_username }}/hello-devops:latest"
           push: true
           source: local
 
       - name: ensure a container is running
         docker_container:
-          name: democontainer:latest
+          name: democontainer
           state: started
           image: "{{ dockerhub_username }}/hello-devops:latest"
           pull: true
