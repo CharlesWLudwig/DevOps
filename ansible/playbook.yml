@@ -15,8 +15,15 @@
             - apt-transport-https
             - ca-certificates
             - curl
+            - sshpass
+            - sudo
+            - pipx
+            - ssh
             - software-properties-common
             - python3-pip
+            - vim
+            - stress
+            - apt-utils
             - virtualenv
             - python3-setuptools
           state: latest
@@ -108,7 +115,7 @@
       - name: Tag and push to docker hub
         community.docker.docker_image:
           name: democontainer
-          repository: "{{ dockerhub_username }}/hello-devops:latest"
+          repository: "{{ dockerhub_username }}/democontainer:latest"
           push: true
           source: local
         tags: latest
@@ -121,7 +128,7 @@
           pull: true
           ports:
             - "3000:3000"
-            
+
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
           path: ./Dockerfile
