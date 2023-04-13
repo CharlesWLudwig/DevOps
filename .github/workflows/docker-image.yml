@@ -63,4 +63,26 @@ jobs:
       working-directory: ./ansible
       run: |
         ansible-galaxy collection install community.docker
-        ansible-playbook playbook.yml -i inventory.ini --extra-vars "dockerhub_username=${{ secrets.DOCKERHUB_USERNAME }} dockerhub_password=${{ secrets.DOCKERHUB_TOKEN }}"
+        ansible-playbook playbook.yml -i inventory.ini --extra-vars "dockerhub_username=${{ secrets.DOCKERHUB_USERNAME }} dockerhub_password=${{ secrets.DOCKERHUB_TOKEN }}"   
+  
+  # Set up Docker for GitHub Actions environment
+    - name: Set up Docker
+      uses: crazy-max/ghaction-setup-docker@v1    
+
+    # Log into Docker Hub (for Docker file upload)
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+    - name: Setting up Docker Build 
+      uses: docker/setup-buildx-action@v2
+
+    - name: Containerize Hello-World for Docker Upload
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./ansible/Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
