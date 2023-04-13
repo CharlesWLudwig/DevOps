@@ -67,7 +67,7 @@ jobs:
       working-directory: ./ansible
       run: |
         ansible-galaxy collection install community.docker
-        ansible-playbook playbook.yml -i inventory.ini
+        ansible-playbook playbook.yml -i inventory.ini --extra-vars "dockerhub_username=${{ secrets.DOCKERHUB_USERNAME }} dockerhub_password=${{ secrets.DOCKERHUB_TOKEN }}"
        
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker

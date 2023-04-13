@@ -50,8 +50,8 @@
 
       - name: log into docker hub registry
         docker_login:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: {{ dockerhub_username }}
+          password: {{ dockerhub_password }}
 
       - name: create build directory
         file:
@@ -93,7 +93,7 @@
       - name: Tag and push to docker hub
         community.docker.docker_image:
           name: democontainer:latest
-          repository: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+          repository: "{{ dockerhub_username }}/hello-devops:latest"
           push: true
           source: local
 
@@ -101,7 +101,7 @@
         docker_container:
           name: democontainer:latest
           state: started
-          image: "${{ secrets.DOCKERHUB_USERNAME }}/hello-devops:latest"
+          image: "{{ dockerhub_username }}/hello-devops:latest"
           pull: true
           ports:
             - "3000:3000"
