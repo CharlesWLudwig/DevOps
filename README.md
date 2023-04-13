@@ -1,4 +1,4 @@
-# DevOps Bootcamp Capstone Project
+# DevOps Bootcamp Capstone Project Instructions
 
 [![Docker Image CI](https://github.com/CharlesWLudwig/DevOps/actions/workflows/docker-image.yml/badge.svg)](https://github.com/CharlesWLudwig/DevOps/actions/workflows/docker-image.yml)
 
@@ -76,3 +76,83 @@ NOTE: From here on, whenever we say repository , that refers to your forked repo
 ## 4. Update "Hello World!" to "Hello DevOps!"
 - Update the node js application to display "Hello DevOps!" instead of "Hello World!" using ansible.
 
+
+# DevOps Bootcamp Capstone Project Solutions
+
+## CI pipeline using Github Actions (Including automated testing,build)
+## Containerization using docker
+
+Roadmap of Github Actions Workflow:
+
+- On checkout, set up python architecture (version 3.11, x64)
+- Install Python dependencies (pip, setuptools, wheel, pip-install-test, tox)
+- Setup GitHub Actions for Docker Buildx and QEMU
+- Login to DockerHub
+- Build and Upload original Hello-World Dockerfile image to Docker Hub (showcasing working application)
+	- Clone repo from ITJ and run npm tests
+	- Build production server if tests pass
+	- Expose port 3000
+	- npm start (if everything is successful)
+	- If successful, containerize / build / upload Dockerfile to Dockerhub as "Hello-World:latest"
+	- Hello-World Dockerfile will be accessible at: https://hub.docker.com/r/charleswludwig/hello-world
+
+- Utilize Ansible Galaxy (Community) Collection to download Community.Docker extensions (for the Playbook requirements).
+- Run the Ansible Playbook to update the original Hello-World Dockerfile to Hello-Devops
+
+## Update the Node JS application content using Ansible
+
+Roadmap of Ansible Playbook:
+
+- using the localhost, becomes temporary root
+	- Localhost (IPV4 address 127.0.0.1) isn't a real physical address
+	- No packets will be generated on the network interface / secure vector for testing
+- installs the latest version of aptitude
+- installs system packages and updates the cache
+            - apt-transport-https
+            - ca-certificates
+            - curl
+            - sshpass
+            - sudo
+            - pipx
+            - ssh
+            - software-properties-common
+            - python3-pip
+            - vim
+            - stress
+            - apt-utils
+            - virtualenv
+            - python3-setuptools
+
+- adds the docker GPG apt key, adds the Docker repo, installs docker-ce and ansible / ansible-core
+- logs into my Dockerhub account (again)
+- creates a temporary build repository for the "Hello-Devops" Dockerfile
+
+- Update the original code with "ansible.builtin.blockinfile" to:
+	- Update package.json to reflect name for "hello-devops"
+	- Update App.test.js to reflect "npm test" for "Hello Devops!"
+	- Update App.js to reflect "npm start" for "Hello Devops!" (what the public viewer will see)
+
+- copy the Dockerfile to a temp root directory
+- build container images
+- archive container image as a tarball
+- fetch archived image
+- copy tarball to host
+- load container from tarball
+- Tag and push to Docker Hub
+- Ensure the "Hello-Devops!" container is uploaded / running
+
+- Hello-Devops Ansible Dockerfile will be accessible at: 
+https://hub.docker.com/r/charleswludwig/hello-devops
+
+To start up Dockerfiles, type in the following commands:
+
+### Docker Pull:
+docker pull charleswludwig/hello-world:latest
+docker pull charleswludwig/hello-devops:latest
+
+### Docker Run:
+- docker run -p 3000:3000 charleswludwig/hello-world:latest
+- Go to "localhost:3000" to see the containerized "Hello-World" image
+
+ - docker run -p 4000:3000 charleswludwig/hello-devops:latest
+- Go to "localhost:4000" to see the containerized "Hello-Devops" image
