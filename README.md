@@ -107,20 +107,20 @@ Roadmap of Ansible Playbook:
 	- No packets will be generated on the network interface / secure vector for testing
 - installs the latest version of aptitude
 - installs system packages and updates the cache
-            - apt-transport-https
-            - ca-certificates
-            - curl
-            - sshpass
-            - sudo
-            - pipx
-            - ssh
-            - software-properties-common
-            - python3-pip
-            - vim
-            - stress
-            - apt-utils
-            - virtualenv
-            - python3-setuptools
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - sshpass
+  - sudo
+  - pipx
+  - ssh
+  - software-properties-common
+  - python3-pip
+  - vim
+  - stress
+  - apt-utils
+  - virtualenv
+  - python3-setuptools
 
 - adds the docker GPG apt key, adds the Docker repo, installs docker-ce and ansible / ansible-core
 - logs into my Dockerhub account (again, this time via Ansible Playbook rather than GitHub Actions Docker Login)
