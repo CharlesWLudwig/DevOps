@@ -82,16 +82,17 @@ NOTE: From here on, whenever we say repository , that refers to your forked repo
 
 Roadmap of Github Actions Workflow:
 
+- Trigger on push and on pull request
 - On checkout, set up python architecture (version 3.11, x64)
 - Install Python dependencies (pip, setuptools, wheel, pip-install-test, tox)
 - Setup GitHub Actions for Docker Buildx and QEMU
-- Login to DockerHub
+- Login to DockerHub via GitHub Actions Docker Login
 - Build and Upload original Hello-World Dockerfile image to Docker Hub (showcasing working application)
-	- Clone repo from ITJ and run npm tests
+	- Clone repo from ITJ and run npm install and npm tests
 	- Build production server if tests pass
 	- Expose port 3000
-	- npm start (if everything is successful)
-	- If successful, containerize / build / upload Dockerfile to Dockerhub as "Hello-World:latest"
+	- npm start (if npm test is successful)
+	- Containerize / build / upload the validated Dockerfile to Dockerhub as "Hello-World:latest"
 	- Hello-World Dockerfile will be accessible at: https://hub.docker.com/r/charleswludwig/hello-world
 
 - Utilize Ansible Galaxy (Community) Collection to download Community.Docker extensions (for the Playbook requirements).
