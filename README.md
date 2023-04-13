@@ -15,8 +15,6 @@
   - [3. Create a CI Pipeline](#3-create-a-ci-pipeline)
   - [4. Update "Hello World!" to "Hello DevOps!"](#4-update-hello-world-to-hello-devops)
 
-Type in "sudo docker run -p 3000:3000 charleswludwig/hello-devops:latest" to run the Docker image.
-
 ## Description
 In this project, you will be using some of the tools and technologies you have learned during the bootcamp.
 
