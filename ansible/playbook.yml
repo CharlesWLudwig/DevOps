@@ -51,6 +51,12 @@
           state: latest
           update_cache: true
 
+      - name: Update apt and install ansible
+        ansible.builtin.apt:
+          name: ansible-core
+          state: latest
+          update_cache: true
+
       - name: Install Docker Module for Python
         ansible.builtin.pip:
           name: docker
