@@ -31,16 +31,6 @@ jobs:
         tox -e py
       continue-on-error: true
 
-    # ansible-playbook github_deploy.yml -i hosts_github 
-    # Set up Docker for GitHub Actions environment
-#    - name: Build the Docker image
-#      run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
-
-    # ansible-playbook github_deploy.yml -i hosts_github 
-    # Set up Docker for GitHub Actions environment
-#    - name: Run the Docker image
-#      run: docker run -dp 3000:3000 ansible-actions:latest
-
     # Set up Docker for GitHub Actions environment
     - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v1    
@@ -65,13 +55,13 @@ jobs:
       
       # Making the alterations to the Dockerfile
       # Setting up ansible shell dependencies
-    - name: Start up ansible community modules
-      shell: bash
-      run: |
-        git update-index --chmod=+x ./.github/actions/ansible/startup.sh 
-        mkdir ~/.ssh
-        echo "${{secrets.SSH_KEY}}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+#    - name: Start up ansible community modules
+#      shell: bash
+#      run: |
+#        git update-index --chmod=+x ./.github/actions/ansible/startup.sh 
+#        mkdir ~/.ssh
+#        echo "${{secrets.SSH_KEY}}" > ~/.ssh/id_rsa
+#        chmod 600 ~/.ssh/id_rsa
 
       # Setting up ansible Dockerfile build dependencies
     - name: 3. CREATE A CI PIPELINE 
