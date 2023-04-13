@@ -140,7 +140,7 @@ Roadmap of Ansible Playbook:
 - Tag and push to Docker Hub
 - Ensure the "Hello-Devops!" container is uploaded / running
 
-- Hello-Devops Ansible Dockerfile will be accessible at: 
+- If everything is successful in the playbook, Hello-Devops Ansible Dockerfile will be accessible at: 
 https://hub.docker.com/r/charleswludwig/hello-devops
 
 To start up Dockerfiles, type in the following commands:
