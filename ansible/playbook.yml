@@ -85,7 +85,7 @@
 
       - name: load container from tarball
         docker_image:
-          name: democontainer:v1.0
+          name: democontainer:latest
           load_path: /root/democontainer_v1_0.tar
           state: present
           source: local
