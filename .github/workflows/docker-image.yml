@@ -11,8 +11,6 @@ permissions: write-all
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ANSIBLE_HOST_KEY_CHECKING: False
 
     steps:
     - name: 1. SETUP YOUR DEVELOPMENT ENVIRONMENT
@@ -35,15 +33,15 @@ jobs:
 
     # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
-    - name: Build the Docker image
-      run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
+#    - name: Build the Docker image
+#      run: docker build . --file .github/actions/ansible/Dockerfile --tag ansible-actions:latest
 
     # ansible-playbook github_deploy.yml -i hosts_github 
     # Set up Docker for GitHub Actions environment
-    - name: Run the Docker image
-      run: docker run -dp 3000:3000 ansible-actions:latest
+#    - name: Run the Docker image
+#      run: docker run -dp 3000:3000 ansible-actions:latest
 
-  # Set up Docker for GitHub Actions environment
+    # Set up Docker for GitHub Actions environment
     - name: Set up Docker
       uses: crazy-max/ghaction-setup-docker@v1    
 
@@ -64,7 +62,8 @@ jobs:
         file: ./ansible/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/hello-world:latest
-        
+      
+      # Making the alterations to the Dockerfile
       # Setting up ansible shell dependencies
     - name: Start up ansible community modules
       shell: bash
