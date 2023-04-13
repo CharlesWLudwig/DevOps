@@ -146,6 +146,7 @@ To start up Dockerfiles, type in the following commands:
 
 ### Docker Pull:
 docker pull charleswludwig/hello-world:latest
+
 docker pull charleswludwig/hello-devops:latest
 
 ### Docker Run:
