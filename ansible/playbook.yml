@@ -78,6 +78,19 @@
           state: present
         tags: latest
 
+      - name: archive container image as a tarball
+        docker_image:
+          name: democontainer:latest
+          archive_path: /root/democontainer_v1_0.tar
+          source: pull
+          state: present
+          
+      - name: fetch archived image
+        fetch:
+          src: /root/democontainer_v1_0.tar
+          dest: ./democontainer_v1_0.tar
+          flat: true
+
       - name: copy tarball to host
         copy:
           src: democontainer_v1_0.tar
