@@ -71,7 +71,7 @@
 
       - name: build container image
         community.docker.docker_image:
-          name: democontainer:latest
+          name: democontainer
           source: build
           build:
             path: /root/devops-dockerfile
@@ -80,10 +80,11 @@
 
       - name: archive container image as a tarball
         community.docker.docker_image:
-          name: democontainer:latest
+          name: democontainer
           archive_path: /root/democontainer_v1_0.tar
           source: pull
           state: present
+        tags: latest
 
       - name: fetch archived image
         fetch:
@@ -98,17 +99,19 @@
 
       - name: load container from tarball
         community.docker.docker_image:
-          name: democontainer:latest
+          name: democontainer
           load_path: /root/democontainer_v1_0.tar
           state: present
           source: local
-          
+        tags: latest
+
       - name: Tag and push to docker hub
         community.docker.docker_image:
           name: democontainer
           repository: "{{ dockerhub_username }}/hello-devops:latest"
           push: true
           source: local
+        tags: latest
 
       - name: ensure a container is running
         community.docker.docker_container:
@@ -118,7 +121,7 @@
           pull: true
           ports:
             - "3000:3000"
-
+            
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
           path: ./Dockerfile
