@@ -71,7 +71,7 @@
       - name: Update Hello-World to Hello-Devops
         ansible.builtin.blockinfile:
           path: ./Dockerfile
-          marker: "#### <!--START_SECTION:ansible_updates--> ####"
+          insertBefore: "COPY . ./App"
           block: |           
             # Replace file content (for the client-facing website)
             RUN sed -i "s|hello-world|hello-devops|g" package.json
@@ -92,7 +92,7 @@
             RUN cat App.test.js
 
             WORKDIR /data/app/capstone_project/hello-world
-            
+
       - name: copy Dockerfile
         copy:
           src: ./Dockerfile
