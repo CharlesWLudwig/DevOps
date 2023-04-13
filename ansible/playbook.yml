@@ -124,7 +124,7 @@
         community.docker.docker_container:
           name: democontainer
           state: started
-          image: "{{ dockerhub_username }}/hello-devops:latest"
+          image: "{{ dockerhub_username }}/democontainer:latest"
           pull: true
           ports:
             - "3000:3000"
