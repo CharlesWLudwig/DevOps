@@ -32,9 +32,12 @@ jobs:
         tox -e py
       continue-on-error: true
 
-    # Set up Docker for GitHub Actions environment
-#    - name: Set up Docker
-#      uses: crazy-max/ghaction-setup-docker@v1    
+    # Set up Docker (for Docker file upload)
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
     # Log into Docker Hub (for Docker file upload)
     - name: Login to Docker Hub
@@ -42,9 +45,6 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-          
-    - name: Setting up Docker Build 
-      uses: docker/setup-buildx-action@v2
 
     - name: Containerize original Hello-World Dockerfile for Docker Upload
       uses: docker/build-push-action@v4
