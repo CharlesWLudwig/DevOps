@@ -156,3 +156,6 @@ docker pull charleswludwig/hello-devops:latest
 
  - docker run -p 4000:3000 charleswludwig/hello-devops:latest
 - Go to "localhost:4000" to see the containerized "Hello-Devops" image
+
+The "Hello-World!" App is evidence that I can test and containerize and build the original capstone Nodejs app from ITJ's repo.
+The "Hello-Devops!" App is evidence I can update the original "Hello-World!" Container in ansible remotely, without having to commit many files locally.
