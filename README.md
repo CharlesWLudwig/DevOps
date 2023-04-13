@@ -122,7 +122,7 @@ Roadmap of Ansible Playbook:
             - python3-setuptools
 
 - adds the docker GPG apt key, adds the Docker repo, installs docker-ce and ansible / ansible-core
-- logs into my Dockerhub account (again)
+- logs into my Dockerhub account (again, this time via Ansible Playbook rather than GitHub Actions Docker Login)
 - creates a temporary build repository for the "Hello-Devops" Dockerfile
 
 - Update the original code with "ansible.builtin.blockinfile" to:
