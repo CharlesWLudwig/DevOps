@@ -50,8 +50,8 @@
 
       - name: log into docker hub registry
         docker_login:
-          username: {{ dockerhub_username }}
-          password: {{ dockerhub_password }}
+          username: "{{ dockerhub_username }}"
+          password: "{{ dockerhub_password }}"
 
       - name: create build directory
         file:
