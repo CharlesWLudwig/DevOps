@@ -63,4 +63,3 @@ jobs:
       run: |
         ansible-galaxy collection install community.docker
         ansible-playbook -i localhost, --connection=local playbook.yml --extra-vars "dockerhub_username=${{ secrets.DOCKERHUB_USERNAME }} dockerhub_password=${{ secrets.DOCKERHUB_TOKEN }}"   
-#       ansible-playbook playbook.yml -i inventory.ini --extra-vars "dockerhub_username=${{ secrets.DOCKERHUB_USERNAME }} dockerhub_password=${{ secrets.DOCKERHUB_TOKEN }}"   
