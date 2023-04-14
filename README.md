@@ -159,3 +159,5 @@ docker pull charleswludwig/hello-devops:latest
 
 The "Hello-World!" App is evidence that I can test and containerize and build the original capstone Nodejs app from ITJ's repo.
 The "Hello-Devops!" App is evidence I can update the original "Hello-World!" Container in ansible remotely, without having to commit many files locally.
+
+The Dockerfile for both applications starts out the same, but the Ansible playbook is what updates the Hello-World Dockerfile content for the Hello-Devops application.
