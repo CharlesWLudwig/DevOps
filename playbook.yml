@@ -39,12 +39,18 @@
           repo: deb https://download.docker.com/linux/ubuntu bionic stable
           state: present
 
-      - name: Update apt and install docker-ce
+      - name: Update apt and install docker-io
         ansible.builtin.apt:
-          name: docker-ce
+          name: docker.io
           state: latest
           update_cache: true
-
+          
+      - name: Update apt and install docker-compose
+        ansible.builtin.apt:
+          name: docker-compose
+          state: latest
+          update_cache: true
+          
       - name: Update apt and install ansible
         ansible.builtin.apt:
           name: ansible
